@@ -67,9 +67,12 @@ npm run preview  # 빌드 결과 확인. draft 글은 빠진다
 
 | 포즈 | 쓰는 곳 |
 | --- | --- |
-| `front` | 로고, 푸터, 트러블슈팅 카드, 파비콘·OG 로고(`public/`) |
+| `f-idle` | 로고, 푸터, 파비콘·OG 로고(`public/`) |
 | `wave` | 홈 히어로 |
-| `laptop` · `camera` · `phone` | 커버 사진이 없는 기술 · 문화 · 소식 글 카드 |
+| `laptop` · `f-q` · `camera` · `phone` | 커버 사진이 없는 기술 · 트러블슈팅 · 문화 · 소식 글 카드 |
+| `f-smile` | 팀 계정(`teamyumyum`) 필자 아바타. `authors.json`의 `mascot` 필드 |
+| `f-calm` | 글이 없을 때의 빈 화면 |
+| `front` | 기본 포즈(지금은 화면에 쓰지 않음) |
 | `heart` | 꾸기 소개 |
 | `sleep` | 404 |
 

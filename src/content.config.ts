@@ -15,6 +15,8 @@ const authors = defineCollection({
     tracks: z.array(z.string()).default([]),
     lead: z.boolean().default(false),
     github: z.string().optional(),
+    // 사람 사진 대신 꾸기 얼굴을 아바타로 쓴다(팀 계정용). 값은 Mascot의 포즈 이름
+    mascot: z.enum(['f-idle', 'f-smile', 'f-calm', 'f-q']).optional(),
     bio: z.string().optional(),
   }),
 });

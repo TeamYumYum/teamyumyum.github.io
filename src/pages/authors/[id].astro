@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostGrid from '../../components/PostGrid.astro';
+import Mascot from '../../components/Mascot.astro';
 import { CONTEXTS } from '../../site.config';
 import { getVisiblePosts } from '../../lib/posts';
 
@@ -14,7 +15,7 @@ export async function getStaticPaths() {
 }
 
 const { author, posts } = Astro.props;
-const { name, github, context, tracks, bio, lead } = author.data;
+const { name, github, mascot, context, tracks, bio, lead } = author.data;
 const ctx = CONTEXTS.find((c) => c.id === context);
 const roles = [ctx && `${ctx.name}(${ctx.id}) 도메인 담당`, ...tracks.map((t) => `${t} 담당`), lead && '팀장'].filter(Boolean);
 ---
@@ -22,9 +23,11 @@ const roles = [ctx && `${ctx.name}(${ctx.id}) 도메인 담당`, ...tracks.map((
 <BaseLayout title={name} description={`${name}의 글`}>
   <div class="page container">
     <header class="profile">
-      {github
-        ? <img src={`https://github.com/${github}.png?size=192`} alt="" width="96" height="96" />
-        : <span class="initial" aria-hidden="true">{name.slice(0, 1)}</span>}
+      {mascot
+        ? <span class="initial"><Mascot pose={mascot} size={80} /></span>
+        : github
+          ? <img src={`https://github.com/${github}.png?size=192`} alt="" width="96" height="96" />
+          : <span class="initial" aria-hidden="true">{name.slice(0, 1)}</span>}
       <div>
         <h1 class="page-title">{name}</h1>
         {roles.length > 0 && <p class="roles">{roles.join(' · ')}</p>}

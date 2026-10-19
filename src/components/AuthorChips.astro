@@ -1,5 +1,6 @@
 ---
 import type { Author } from '../lib/posts';
+import Mascot from './Mascot.astro';
 
 interface Props { authors: Author[]; size?: 'sm' | 'md' }
 const { authors, size = 'sm' } = Astro.props;
@@ -8,9 +9,11 @@ const { authors, size = 'sm' } = Astro.props;
 <span class:list={['authors', size]}>
   {authors.map((a) => (
     <a class="author" href={`/authors/${a.id}`}>
-      {a.data.github
-        ? <img src={`https://github.com/${a.data.github}.png?size=64`} alt="" width="24" height="24" loading="lazy" />
-        : <span class="initial" aria-hidden="true">{a.data.name.slice(0, 1)}</span>}
+      {a.data.mascot
+        ? <span class="initial face"><Mascot pose={a.data.mascot} size={size === 'md' ? 26 : 20} /></span>
+        : a.data.github
+          ? <img src={`https://github.com/${a.data.github}.png?size=64`} alt="" width="24" height="24" loading="lazy" />
+          : <span class="initial" aria-hidden="true">{a.data.name.slice(0, 1)}</span>}
       <span class="name">{a.data.name}</span>
     </a>
   ))}
@@ -25,6 +28,7 @@ const { authors, size = 'sm' } = Astro.props;
     display: inline-flex; align-items: center; justify-content: center;
     background: var(--brand-weak); color: var(--brand-text); font-size: var(--fs-100); font-weight: 800;
   }
+  .face { overflow: hidden; }
   .sm { font-size: var(--fs-200); }
   .md { font-size: var(--fs-300); }
   .md img, .md .initial { width: 28px; height: 28px; }
