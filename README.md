@@ -61,10 +61,19 @@ npm run preview  # 빌드 결과 확인. draft 글은 빠진다
 
 ## 꾸기 캐릭터
 
-`src/assets/kkugi/`의 포즈 PNG는 캐릭터 시트(배경 투명 원본)에서 잘라 낸 것이다.
+`src/assets/kkugi/`의 포즈 PNG는 꾸기 저장소 `docs/assets/kkugi-character/poses/`의 원본에서 블로그에 쓰는 것만 골라
+긴 변 1024px로 줄인 것이다. 원본이 바뀌면 같은 이름으로 다시 줄여 넣는다.
 `<Mascot pose="wave" size={300} />`처럼 쓰면 빌드할 때 1배·2배 WebP로 바뀐다. 포즈 이름은 `src/components/Mascot.astro`에 있다.
-커버 사진이 없는 글은 카테고리별 포즈(기술 `laptop`, 트러블슈팅 `question`, 문화 `camera`, 소식 `phone`)가 대신 보인다.
-파비콘과 OG 로고(`public/`)는 `face` 포즈로 만들었다.
+
+| 포즈 | 쓰는 곳 |
+| --- | --- |
+| `front` | 로고, 푸터, 트러블슈팅 카드, 파비콘·OG 로고(`public/`) |
+| `wave` | 홈 히어로 |
+| `laptop` · `camera` · `phone` | 커버 사진이 없는 기술 · 문화 · 소식 글 카드 |
+| `heart` | 꾸기 소개 |
+| `sleep` | 404 |
+
+화면에 보이는 크기의 2배 이상인 원본을 써야 고해상도 화면에서 흐려지지 않는다.
 
 ## 설정
 
