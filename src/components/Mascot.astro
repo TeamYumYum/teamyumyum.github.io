@@ -1,0 +1,41 @@
+---
+/*
+ * 꾸기(뻐꾸기) 캐릭터. 그림은 캐릭터 시트(kkugi.png, 배경 투명)에서 포즈별로 잘라 src/assets/kkugi/에 두었다.
+ * Astro가 빌드할 때 화면 크기의 1배·2배 WebP로 바꾸므로 원본 PNG가 그대로 내려가지 않는다.
+ */
+import { Image } from 'astro:assets';
+import wave from '../assets/kkugi/wave.png';
+import walk from '../assets/kkugi/walk.png';
+import heart from '../assets/kkugi/heart.png';
+import front from '../assets/kkugi/front.png';
+import face from '../assets/kkugi/face.png';
+import question from '../assets/kkugi/question.png';
+import backpack from '../assets/kkugi/backpack.png';
+import phone from '../assets/kkugi/phone.png';
+import fly from '../assets/kkugi/fly.png';
+import laptop from '../assets/kkugi/laptop.png';
+import camera from '../assets/kkugi/camera.png';
+import sleep from '../assets/kkugi/sleep.png';
+
+const POSES = { wave, walk, heart, front, face, question, backpack, phone, fly, laptop, camera, sleep };
+export type Pose = keyof typeof POSES;
+
+interface Props { pose?: Pose; size?: number; class?: string; label?: string; eager?: boolean }
+const { pose = 'face', size = 32, class: className, label, eager = false } = Astro.props;
+const src = POSES[pose];
+---
+
+<Image
+  class:list={['mascot', className]}
+  src={src}
+  width={size}
+  densities={[1, 2]}
+  alt={label ?? ''}
+  aria-hidden={label ? undefined : 'true'}
+  loading={eager ? 'eager' : 'lazy'}
+  decoding="async"
+/>
+
+<style>
+  .mascot { display: block; flex: none; height: auto; user-select: none; -webkit-user-drag: none; }
+</style>

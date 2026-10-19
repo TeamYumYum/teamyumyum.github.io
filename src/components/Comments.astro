@@ -1,0 +1,64 @@
+---
+import { SITE } from '../site.config';
+
+const g = SITE.giscus;
+const enabled = g.repo !== '' && g.repoId !== '' && g.categoryId !== '';
+---
+
+{enabled && (
+  <section class="comments" aria-label="댓글">
+    <script is:inline define:vars={{ giscus: g }}>
+      /*
+       * 로더를 마크업이 아니라 여기서 만든다. 마크업에 두면 이 스크립트가 도는 시점에
+       * 테마를 꽂을 형제 노드가 아직 없어, 다크 모드 독자가 라이트 댓글창을 한 번 보게 된다.
+       */
+      (function () {
+        var saved = null;
+        try { saved = localStorage.getItem('theme'); } catch (e) {}
+        var dark = saved ? saved === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+
+        var loader = document.createElement('script');
+        loader.src = 'https://giscus.app/client.js';
+        loader.async = true;
+        loader.crossOrigin = 'anonymous';
+        Object.assign(loader.dataset, {
+          repo: giscus.repo,
+          repoId: giscus.repoId,
+          category: giscus.category,
+          categoryId: giscus.categoryId,
+          mapping: 'pathname',
+          strict: '1',
+          reactionsEnabled: '1',
+          emitMetadata: '0',
+          inputPosition: 'top',
+          lang: 'ko',
+          loading: 'lazy',
+          theme: dark ? 'dark' : 'light',
+        });
+        document.currentScript.parentElement.appendChild(loader);
+      })();
+    </script>
+  </section>
+)}
+
+<style>
+  .comments { margin-top: var(--space-16); padding-top: var(--space-8); border-top: 1px solid var(--border); }
+</style>
+
+<script>
+  // 테마 토글에 맞춰 giscus iframe 테마를 바꾼다
+  function sendTheme() {
+    const frame = document.querySelector<HTMLIFrameElement>('iframe.giscus-frame');
+    if (!frame?.contentWindow) return;
+    const theme = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+    frame.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, 'https://giscus.app');
+  }
+
+  new MutationObserver(sendTheme).observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme'],
+  });
+  window.addEventListener('message', (e) => {
+    if (e.origin === 'https://giscus.app') sendTheme();
+  });
+</script>

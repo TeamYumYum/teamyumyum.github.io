@@ -1,0 +1,45 @@
+[
+  {
+    "id": "teamyumyum",
+    "name": "TeamYumYum",
+    "member": false,
+    "bio": "꾸기를 만드는 팀"
+  },
+  {
+    "id": "seol-munhyeok",
+    "name": "설문혁",
+    "context": "Member",
+    "github": "Seol-Munhyeok"
+  },
+  {
+    "id": "kim-gyunho",
+    "name": "김균호",
+    "context": "Meal",
+    "tracks": ["백엔드 공통"]
+  },
+  {
+    "id": "jung-sanghoon",
+    "name": "정상훈",
+    "context": "Workout",
+    "tracks": ["Android 공통"]
+  },
+  {
+    "id": "shin-jaeeun",
+    "name": "신재은",
+    "context": "Coaching",
+    "tracks": ["인프라"]
+  },
+  {
+    "id": "hong-baeknamjun",
+    "name": "홍백남준",
+    "context": "Growth"
+  },
+  {
+    "id": "park-sihyun",
+    "name": "박시현",
+    "context": "Admin",
+    "tracks": ["Web", "AI·ML", "저장소 규칙"],
+    "lead": true,
+    "github": "kiddo-psh"
+  }
+]

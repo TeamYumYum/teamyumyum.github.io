@@ -1,0 +1,106 @@
+@import 'pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css';
+@import './tokens.css';
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 80px; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: var(--fs-400);
+  line-height: var(--lh-normal);
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+main { min-height: 70vh; }
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; height: auto; display: block; }
+
+:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; border-radius: 4px; }
+
+.container { width: min(100% - var(--gutter) * 2, var(--w-wide)); margin-inline: auto; }
+.w-doc { width: min(100% - var(--gutter) * 2, var(--w-doc)); margin-inline: auto; }
+.w-read { width: min(100% - var(--gutter) * 2, var(--w-read)); margin-inline: auto; }
+
+.page { padding-block: var(--space-12) var(--space-20); }
+.page-title { font-size: var(--fs-title); line-height: var(--lh-tight); letter-spacing: -0.02em; margin: 0 0 var(--space-3); }
+.page-lead { color: var(--text-dim); font-size: var(--fs-400); margin: 0 0 var(--space-10); }
+
+.section-title { font-size: var(--fs-600); letter-spacing: -0.01em; margin: 0 0 var(--space-6); }
+
+.chip {
+  display: inline-flex; align-items: center; gap: var(--space-1);
+  padding: 6px 14px; border-radius: var(--radius-pill);
+  background: var(--bg-sub); color: var(--text-dim);
+  font-size: var(--fs-300); font-weight: 600;
+  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.chip:hover { color: var(--text); }
+.chip[aria-current='page'] { background: var(--text); color: var(--bg); }
+
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: var(--radius-pill);
+  font-size: var(--fs-200); font-weight: 700;
+}
+.badge[data-cat='tech'] { background: var(--cat-tech-bg); color: var(--cat-tech-fg); }
+.badge[data-cat='troubleshooting'] { background: var(--cat-troubleshooting-bg); color: var(--cat-troubleshooting-fg); }
+.badge[data-cat='culture'] { background: var(--cat-culture-bg); color: var(--cat-culture-fg); }
+.badge[data-cat='news'] { background: var(--cat-news-bg); color: var(--cat-news-fg); }
+
+.empty {
+  padding: var(--space-12) var(--space-6); border-radius: var(--radius-lg);
+  background: var(--bg-sub); color: var(--text-dim); text-align: center;
+}
+
+/* ── 글 본문 ─────────────────────────────────────────────── */
+.prose { font-size: var(--fs-400); line-height: var(--lh-relaxed); }
+.prose > * + * { margin-top: 1.1em; }
+.prose h2 { font-size: var(--fs-600); line-height: var(--lh-tight); letter-spacing: -0.01em; margin: 2.4em 0 0.2em; }
+.prose h3 { font-size: var(--fs-500); line-height: var(--lh-snug); margin: 2em 0 0.2em; }
+.prose p, .prose ul, .prose ol { margin-bottom: 0; }
+.prose ul, .prose ol { padding-left: 1.3em; }
+.prose li + li { margin-top: 0.35em; }
+.prose a { color: var(--brand-text); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.prose strong { font-weight: 700; }
+.prose blockquote {
+  margin-inline: 0; padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-md); background: var(--brand-weak); color: var(--text);
+}
+.prose blockquote > :first-child { margin-top: 0; }
+.prose blockquote > :last-child { margin-bottom: 0; }
+.prose :not(pre) > code {
+  padding: 0.15em 0.4em; border-radius: 6px; background: var(--code-bg);
+  font-family: var(--font-mono); font-size: 0.88em;
+}
+.prose pre {
+  padding: var(--space-4) var(--space-5); border-radius: var(--radius-md);
+  border: 1px solid var(--border); font-size: var(--fs-300); line-height: var(--lh-normal); overflow-x: auto;
+}
+.prose pre code { font-family: var(--font-mono); }
+.prose img { border-radius: var(--radius-md); margin-inline: auto; }
+/* 이미지 바로 아래 기울임 문단을 사진 설명으로 쓴다: ![alt](./a.jpg)\n*사진 설명* */
+.prose p:has(> img) + p > em:only-child { display: block; margin-top: -0.4em; text-align: center; color: var(--text-subtle); font-size: var(--fs-200); font-style: normal; }
+.prose table { width: 100%; border-collapse: collapse; font-size: var(--fs-300); line-height: var(--lh-normal); display: block; overflow-x: auto; }
+.prose th, .prose td { padding: var(--space-2) var(--space-3); border-bottom: 1px solid var(--border); text-align: left; }
+.prose th { color: var(--text-dim); font-weight: 600; white-space: nowrap; }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin: 2.5em 0; }
+
+/* Shiki 이중 테마: 다크 모드에서 --shiki-dark 값으로 바꾼다 */
+:root[data-theme='dark'] .astro-code,
+:root[data-theme='dark'] .astro-code span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}

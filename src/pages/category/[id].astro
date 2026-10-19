@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CategoryTabs from '../../components/CategoryTabs.astro';
+import PostGrid from '../../components/PostGrid.astro';
+import { CATEGORIES } from '../../site.config';
+import { getVisiblePosts } from '../../lib/posts';
+
+export async function getStaticPaths() {
+  const posts = await getVisiblePosts();
+  return CATEGORIES.map((category) => ({
+    params: { id: category.id },
+    props: { category, posts: posts.filter((p) => p.data.category === category.id) },
+  }));
+}
+
+const { category, posts } = Astro.props;
+---
+
+<BaseLayout title={category.name} description={category.description}>
+  <div class="page container">
+    <h1 class="page-title">{category.name}</h1>
+    <p class="page-lead">{category.description}</p>
+    <CategoryTabs current={category.id} />
+    <PostGrid posts={posts} empty={`아직 ${category.name} 글이 없어요.`} />
+  </div>
+</BaseLayout>

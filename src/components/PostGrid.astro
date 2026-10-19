@@ -1,0 +1,19 @@
+---
+import type { Post } from '../lib/posts';
+import PostCard from './PostCard.astro';
+
+interface Props { posts: Post[]; empty?: string }
+const { posts, empty = '아직 글이 없어요. 곧 첫 글로 찾아올게요.' } = Astro.props;
+---
+
+{posts.length === 0
+  ? <p class="empty">{empty}</p>
+  : (
+    <div class="grid">
+      {posts.map((p) => <PostCard post={p} />)}
+    </div>
+  )}
+
+<style>
+  .grid { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); }
+</style>

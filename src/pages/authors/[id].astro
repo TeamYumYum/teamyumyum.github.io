@@ -1,0 +1,49 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostGrid from '../../components/PostGrid.astro';
+import { CONTEXTS } from '../../site.config';
+import { getVisiblePosts } from '../../lib/posts';
+
+export async function getStaticPaths() {
+  const [authors, posts] = await Promise.all([getCollection('authors'), getVisiblePosts()]);
+  return authors.map((author) => ({
+    params: { id: author.id },
+    props: { author, posts: posts.filter((p) => p.data.authors.some((a) => a.id === author.id)) },
+  }));
+}
+
+const { author, posts } = Astro.props;
+const { name, github, context, tracks, bio, lead } = author.data;
+const ctx = CONTEXTS.find((c) => c.id === context);
+const roles = [ctx && `${ctx.name}(${ctx.id}) 도메인 담당`, ...tracks.map((t) => `${t} 담당`), lead && '팀장'].filter(Boolean);
+---
+
+<BaseLayout title={name} description={`${name}의 글`}>
+  <div class="page container">
+    <header class="profile">
+      {github
+        ? <img src={`https://github.com/${github}.png?size=192`} alt="" width="96" height="96" />
+        : <span class="initial" aria-hidden="true">{name.slice(0, 1)}</span>}
+      <div>
+        <h1 class="page-title">{name}</h1>
+        {roles.length > 0 && <p class="roles">{roles.join(' · ')}</p>}
+        {bio && <p class="bio">{bio}</p>}
+        {github && <a class="gh" href={`https://github.com/${github}`} rel="noopener">github.com/{github}</a>}
+      </div>
+    </header>
+    <h2 class="section-title">쓴 글</h2>
+    <PostGrid posts={posts} empty="아직 쓴 글이 없어요." />
+  </div>
+</BaseLayout>
+
+<style>
+  .profile { display: flex; align-items: center; gap: var(--space-6); margin-bottom: var(--space-12); }
+  .profile img, .initial { width: 96px; height: 96px; border-radius: 50%; flex: none; }
+  .initial { display: inline-flex; align-items: center; justify-content: center; background: var(--brand-weak); color: var(--brand-text); font-size: var(--fs-title); font-weight: 800; }
+  .page-title { margin-bottom: var(--space-1); }
+  .roles { margin: 0; color: var(--brand-text); font-weight: 700; }
+  .bio { margin: var(--space-2) 0 0; color: var(--text-dim); }
+  .gh { display: inline-block; margin-top: var(--space-2); color: var(--text-subtle); font-size: var(--fs-300); }
+  .gh:hover { color: var(--text); }
+</style>

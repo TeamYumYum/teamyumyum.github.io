@@ -1,0 +1,97 @@
+---
+import type { MarkdownHeading } from 'astro';
+import { Image } from 'astro:assets';
+import BaseLayout from './BaseLayout.astro';
+import AuthorChips from '../components/AuthorChips.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+import Comments from '../components/Comments.astro';
+import PostCard from '../components/PostCard.astro';
+import { getCategory } from '../site.config';
+import { formatDate, getPostAuthors, getRelatedPosts, readingMinutes, tagSlug, type Post } from '../lib/posts';
+
+interface Props { post: Post; headings: MarkdownHeading[] }
+const { post, headings } = Astro.props;
+const { title, description, pubDate, tags, cover, coverAlt } = post.data;
+const category = getCategory(post.data.category);
+const isDoc = category.layout === 'doc';
+const authors = await getPostAuthors(post);
+const related = await getRelatedPosts(post);
+// 커버가 있으면 그 사진을, 없으면 빌드 때 만든 OG 이미지를 공유 미리보기로 쓴다
+const ogImage = cover ? cover.src : `/og/${post.id}.png`;
+---
+
+<BaseLayout title={title} description={description} ogImage={ogImage} ogType="article">
+  <article class="post" data-pagefind-body>
+    <header class:list={['head', isDoc ? 'w-doc' : 'w-read']}>
+      <a class="badge" data-cat={category.id} href={`/category/${category.id}`}>{category.name}</a>
+      <h1>{title}</h1>
+      <p class="desc">{description}</p>
+      <div class="meta">
+        <AuthorChips authors={authors} size="md" />
+        <span class="sub">
+          <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
+          <span aria-hidden="true">·</span>
+          <span>{readingMinutes(post.body)}분 읽기</span>
+        </span>
+      </div>
+    </header>
+
+    {cover && (
+      <figure class="cover container">
+        <Image src={cover} alt={coverAlt ?? ''} widths={[720, 1120, 1600]} sizes="(max-width: 1120px) 100vw, 1120px" loading="eager" />
+      </figure>
+    )}
+
+    <div class:list={['layout', { doc: isDoc }]}>
+      <div class:list={['prose', isDoc ? 'w-doc' : 'w-read']}>
+        <slot />
+      </div>
+      {isDoc && <aside class="side"><TableOfContents headings={headings} /></aside>}
+    </div>
+
+    <footer class:list={['foot', isDoc ? 'w-doc' : 'w-read']} data-pagefind-ignore>
+      {tags.length > 0 && (
+        <ul class="tags">
+          {tags.map((t) => <li><a class="chip" href={`/tags/${tagSlug(t)}`}>#{t}</a></li>)}
+        </ul>
+      )}
+      <Comments />
+    </footer>
+  </article>
+
+  {related.length > 0 && (
+    <section class="related container" aria-label={`${category.name} 다른 글`}>
+      <h2 class="section-title">{category.name} 글 더 보기</h2>
+      <div class="grid">{related.map((p) => <PostCard post={p} />)}</div>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  .post { padding-top: var(--space-12); }
+  .head { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-4); margin-bottom: var(--space-10); }
+  h1 { margin: 0; font-size: var(--fs-title); line-height: var(--lh-tight); letter-spacing: -0.025em; }
+  .desc { margin: 0; color: var(--text-dim); font-size: var(--fs-500); line-height: var(--lh-snug); }
+  .meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-5); margin-top: var(--space-2); }
+  .sub { display: inline-flex; gap: 6px; color: var(--text-subtle); font-size: var(--fs-300); }
+
+  .cover { margin: 0 auto var(--space-12); }
+  .cover :global(img) { width: 100%; border-radius: var(--radius-lg); max-height: 560px; object-fit: cover; }
+
+  /* 기술 글은 넓은 화면에서 오른쪽에 목차를 붙인다. 본문 폭은 그대로 두고 목차만 바깥에 띄운다 */
+  .layout { position: relative; }
+  .side { display: none; }
+  @media (min-width: 1240px) {
+    .doc .side {
+      display: block; position: absolute; top: 0; bottom: 0;
+      left: calc(50% + var(--w-doc) / 2 + var(--space-10)); width: 220px;
+    }
+    .doc .side :global(.toc) { position: sticky; top: 96px; }
+  }
+
+  .foot { margin-top: var(--space-16); }
+  .tags { display: flex; flex-wrap: wrap; gap: var(--space-2); list-style: none; margin: 0; padding: 0; }
+
+  .related { margin-top: var(--space-20); }
+  .grid { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); }
+</style>

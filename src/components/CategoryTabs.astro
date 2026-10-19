@@ -1,0 +1,17 @@
+---
+import { CATEGORIES } from '../site.config';
+
+interface Props { current?: string }
+const { current } = Astro.props;
+---
+
+<nav class="tabs" aria-label="분류">
+  <a class="chip" href="/posts" aria-current={current ? undefined : 'page'}>전체</a>
+  {CATEGORIES.map((c) => (
+    <a class="chip" href={`/category/${c.id}`} aria-current={current === c.id ? 'page' : undefined}>{c.name}</a>
+  ))}
+</nav>
+
+<style>
+  .tabs { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-bottom: var(--space-8); }
+</style>

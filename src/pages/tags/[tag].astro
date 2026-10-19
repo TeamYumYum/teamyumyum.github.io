@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostGrid from '../../components/PostGrid.astro';
+import { getVisiblePosts, tagSlug } from '../../lib/posts';
+
+export async function getStaticPaths() {
+  const posts = await getVisiblePosts();
+  const byTag = new Map<string, { label: string; posts: typeof posts }>();
+  for (const post of posts) {
+    for (const tag of post.data.tags) {
+      const slug = tagSlug(tag);
+      const entry = byTag.get(slug) ?? { label: tag, posts: [] };
+      entry.posts.push(post);
+      byTag.set(slug, entry);
+    }
+  }
+  return [...byTag].map(([tag, { label, posts }]) => ({ params: { tag }, props: { label, posts } }));
+}
+
+const { label, posts } = Astro.props;
+---
+
+<BaseLayout title={`#${label}`} description={`#${label} 태그가 붙은 글`}>
+  <div class="page container">
+    <h1 class="page-title">#{label}</h1>
+    <p class="page-lead">{posts.length}개의 글</p>
+    <PostGrid posts={posts} />
+  </div>
+</BaseLayout>

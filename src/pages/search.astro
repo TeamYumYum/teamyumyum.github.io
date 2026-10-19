@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PagefindConfig from 'astro-pagefind/components/PagefindConfig.astro';
+import CategoryTabs from '../components/CategoryTabs.astro';
+---
+
+<BaseLayout title="검색" description="꾸기 테크 글 검색">
+  <div class="page w-doc">
+    <h1 class="page-title">검색</h1>
+    <noscript>검색에는 자바스크립트가 필요해요. <a href="/posts">전체 글</a>에서 분류별로 둘러보세요.</noscript>
+    <PagefindConfig />
+    <pagefind-searchbox></pagefind-searchbox>
+    <div class="browse">
+      <p>분류로 둘러보기</p>
+      <CategoryTabs />
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  /* Pagefind 컴포넌트 UI는 --pf-* 프로퍼티로 테마를 받는다. 사이트 토큰을 연결해 다크 모드를 따라가게 한다 */
+  pagefind-searchbox {
+    --pf-background: var(--bg);
+    --pf-text: var(--text);
+    --pf-text-secondary: var(--text-dim);
+    --pf-text-muted: var(--text-subtle);
+    --pf-border: var(--border);
+    --pf-border-focus: var(--brand);
+    --pf-hover: var(--bg-sub);
+    --pf-mark: var(--brand-text);
+    --pf-outline-focus: var(--brand);
+    --pf-font: var(--font-sans);
+    --pf-searchbox-max-width: 100%;
+    display: block;
+  }
+  .browse { margin-top: var(--space-10); }
+  .browse p { margin: 0 0 var(--space-3); color: var(--text-subtle); font-weight: 700; font-size: var(--fs-300); }
+</style>

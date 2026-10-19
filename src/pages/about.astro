@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Mascot from '../components/Mascot.astro';
+import { SITE } from '../site.config';
+
+const stack = [
+  { area: '폰 · 워치', items: ['Android', 'Kotlin', 'Jetpack Compose', 'Wear OS'] },
+  { area: '서버', items: ['Spring Boot', 'MySQL', 'Redis', 'Flyway'] },
+  { area: '웹', items: ['React', 'Vite', 'OpenAPI 생성 타입'] },
+  { area: 'AI · ML', items: ['FastAPI', 'Claude', 'PyTorch', 'ONNX Runtime', 'MLflow'] },
+  { area: '인프라', items: ['Docker Compose', 'Nginx', 'Grafana'] },
+];
+
+const ways = [
+  {
+    title: '도메인 하나는 한 사람이 끝까지',
+    body: '회원, 식단, 운동, 코칭, 성장, 검수. 도메인마다 담당자가 화면부터 테이블까지 맡고, 다른 도메인에 영향을 주는 변경은 그 담당자가 리뷰해요.',
+  },
+  {
+    title: 'AI와 함께 일하는 규칙',
+    body: '사람과 AI가 같은 규칙 문서를 따라요. 변경의 위험도에 따라 플랜 승인과 분리 리뷰를 더하고, 검증 결과를 MR에 남겨요.',
+  },
+  {
+    title: '리뷰데이',
+    body: '정기적으로 모여 서로의 코드와 설계를 리뷰하고, 배운 것을 이 블로그의 문화 카테고리에 기록해요.',
+  },
+];
+---
+
+<BaseLayout title="꾸기 소개" description="AI 건강 코치 꾸기와 TeamYumYum이 일하는 방식">
+  <div class="page w-doc">
+    <header class="intro">
+      <Mascot pose="heart" size={150} label="하트를 안고 웃는 꾸기" />
+      <div>
+        <h1 class="page-title">꾸기는 먼저 챙기는 건강 코치예요</h1>
+        <p class="page-lead">
+          대부분의 건강 앱은 사용자가 직접 기록해야 해요. 꾸기는 반대로 해요. 꾸기가 식사와 운동 기록을 미리 준비해 두고,
+          사용자는 확인만 하면 돼요. Android 폰과 Wear OS가 주 무대이고, 웹은 대시보드와 관리자 화면이에요.
+        </p>
+      </div>
+    </header>
+
+    <section>
+      <h2 class="section-title">이름이 꾸기인 이유</h2>
+      <p class="text">
+        뻐꾸기에서 따왔어요. 때가 되면 먼저 울려 알려 주는 뻐꾸기시계처럼, 끼니와 운동 시간을 놓치지 않게 먼저 말을 거는
+        코치가 되고 싶었어요. 앱 안의 꾸기는 사용자가 목표를 지킬수록 함께 자라는 캐릭터이기도 해요.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="section-title">우리가 일하는 방식</h2>
+      <ul class="ways">
+        {ways.map((w) => <li><strong>{w.title}</strong><p>{w.body}</p></li>)}
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="section-title">기술 스택</h2>
+      <dl class="stack">
+        {stack.map((s) => (
+          <div>
+            <dt>{s.area}</dt>
+            <dd>{s.items.map((i) => <span class="chip">{i}</span>)}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+
+    <p class="more">
+      코드는 <a href={SITE.links.product} rel="noopener">GitHub 저장소</a>에서 볼 수 있어요.
+      팀원이 궁금하면 <a href="/team">팀 페이지</a>로 오세요.
+    </p>
+  </div>
+</BaseLayout>
+
+<style>
+  section { margin-top: var(--space-12); }
+  .intro { display: flex; flex-direction: column; gap: var(--space-6); }
+  @media (min-width: 640px) { .intro { flex-direction: row; align-items: flex-start; } }
+  .text { color: var(--text-dim); line-height: var(--lh-relaxed); margin: 0; }
+
+  .ways { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-4); }
+  .ways li { padding: var(--space-5) var(--space-6); border-radius: var(--radius-lg); background: var(--bg-sub); }
+  .ways strong { font-size: var(--fs-400); }
+  .ways p { margin: var(--space-2) 0 0; color: var(--text-dim); font-size: var(--fs-300); line-height: var(--lh-normal); }
+
+  .stack { margin: 0; display: grid; gap: var(--space-4); }
+  .stack div { display: grid; gap: var(--space-2); }
+  @media (min-width: 640px) { .stack div { grid-template-columns: 7em 1fr; align-items: baseline; } }
+  dt { font-weight: 700; color: var(--text-dim); }
+  dd { margin: 0; display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  dd .chip { font-size: var(--fs-200); padding: 4px 12px; }
+
+  .more { margin-top: var(--space-12); color: var(--text-dim); }
+  .more a { color: var(--brand-text); text-decoration: underline; text-underline-offset: 3px; }
+</style>

@@ -1,0 +1,33 @@
+---
+import { SITE } from '../site.config';
+import Mascot from './Mascot.astro';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container inner">
+    <div class="brand">
+      <Mascot size={28} />
+      <span>{SITE.title}</span>
+      <span class="by">by {SITE.team}</span>
+    </div>
+    <ul>
+      <li><a href="/rss.xml">RSS</a></li>
+      <li><a href={SITE.links.github} rel="noopener">GitHub</a></li>
+      <li><a href={SITE.links.product} rel="noopener">꾸기 저장소</a></li>
+    </ul>
+    <p class="copy">© {year} {SITE.team}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer { margin-top: var(--space-20); padding-block: var(--space-10); background: var(--bg-sub); }
+  .inner { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-4) var(--space-8); }
+  .brand { display: inline-flex; align-items: center; gap: var(--space-2); font-weight: 800; }
+  .by { color: var(--text-subtle); font-weight: 500; font-size: var(--fs-200); }
+  ul { display: flex; gap: var(--space-5); list-style: none; margin: 0; padding: 0; flex: 1; }
+  a { color: var(--text-dim); font-size: var(--fs-300); }
+  a:hover { color: var(--text); }
+  .copy { margin: 0; color: var(--text-subtle); font-size: var(--fs-200); }
+</style>

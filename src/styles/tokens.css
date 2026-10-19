@@ -1,0 +1,104 @@
+/*
+ * 색은 꾸기 앱 디자인 시스템(android/core KkugiColorTokens)의 값을 그대로 쓴다.
+ * 앱과 블로그가 같은 주황과 같은 회색을 써야 한 브랜드로 보인다.
+ */
+:root {
+  --bg: #ffffff;
+  --bg-sub: #f3f4f5;          /* BG_LAYER_BASEMENT */
+  --bg-elev: #ffffff;
+  --text: #1a1c20;            /* FG_NEUTRAL */
+  --text-dim: #555d6d;        /* FG_NEUTRAL_MUTED */
+  --text-subtle: #868b94;     /* FG_NEUTRAL_SUBTLE */
+  --border: #dcdee3;          /* STROKE_NEUTRAL_WEAK */
+  --brand: #ff6600;           /* BG_BRAND_SOLID */
+  --brand-text: #e14d00;      /* FG_BRAND — 흰 바탕 위 글씨용으로 한 단계 진하다 */
+  --brand-weak: #fff2ec;      /* BG_BRAND_WEAK */
+  --on-brand: #ffffff;
+  --code-bg: #f6f7f8;
+
+  /* 카테고리 칩 틴트. 앱의 의미색(positive·informative·warning) 약한 배경을 빌려 왔다 */
+  --cat-tech-bg: #eff6ff;
+  --cat-tech-fg: #1b64da;
+  --cat-troubleshooting-bg: #fff2ec;
+  --cat-troubleshooting-fg: #e14d00;
+  --cat-culture-bg: #edfaf6;
+  --cat-culture-fg: #067a5f;
+  --cat-news-bg: #fff7de;
+  --cat-news-fg: #8a6a1c;
+
+  --font-sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', monospace;
+
+  /* 글자 크기 사다리. 컴포넌트에서 새 값을 만들지 않고 여기서 고른다 */
+  --fs-100: 0.75rem;    /* 12 */
+  --fs-200: 0.8125rem;  /* 13 */
+  --fs-300: 0.9375rem;  /* 15 */
+  --fs-400: 1.0625rem;  /* 17 — 본문 */
+  --fs-500: 1.25rem;    /* 20 */
+  --fs-600: 1.5rem;     /* 24 */
+  --fs-title: clamp(1.75rem, 1.3rem + 1.8vw, 2.5rem);
+  --fs-display: clamp(1.875rem, 1.2rem + 2.6vw, 3.25rem);
+
+  --lh-tight: 1.3;
+  --lh-snug: 1.45;
+  --lh-normal: 1.6;
+  --lh-relaxed: 1.85;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.04), 0 4px 16px rgb(0 0 0 / 0.04);
+  --shadow-card-hover: 0 2px 4px rgb(0 0 0 / 0.05), 0 12px 32px rgb(0 0 0 / 0.08);
+
+  --w-wide: 1120px;
+  --w-doc: 760px;
+  --w-read: 680px;
+  --gutter: 20px;
+
+  --dur: 180ms;
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --bg: #121316;
+  --bg-sub: #1b1d21;
+  --bg-elev: #1e2025;
+  --text: #eceef1;
+  --text-dim: #b0b6c0;
+  --text-subtle: #868b94;
+  --border: #2e3138;
+  --brand: #ff7a1f;
+  --brand-text: #ff9a52;
+  --brand-weak: #2e1d12;
+  --code-bg: #1b1d21;
+
+  --cat-tech-bg: #172338;
+  --cat-tech-fg: #8ab8ff;
+  --cat-troubleshooting-bg: #2e1d12;
+  --cat-troubleshooting-fg: #ff9a52;
+  --cat-culture-bg: #12291f;
+  --cat-culture-fg: #6fd6ab;
+  --cat-news-bg: #2b2412;
+  --cat-news-fg: #e6c66e;
+
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.3);
+  --shadow-card-hover: 0 8px 28px rgb(0 0 0 / 0.45);
+
+  color-scheme: dark;
+}

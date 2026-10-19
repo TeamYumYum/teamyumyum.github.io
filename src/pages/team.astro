@@ -1,0 +1,92 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { CONTEXTS } from '../site.config';
+
+const members = (await getCollection('authors')).filter((a) => a.data.member);
+const owner = (contextId: string) => members.find((m) => m.data.context === contextId);
+const tracks = members.filter((m) => m.data.tracks.length > 0);
+---
+
+<BaseLayout title="팀" description="꾸기를 만드는 TeamYumYum과 각자 맡은 일">
+  <div class="page container">
+    <h1 class="page-title">꾸기를 만드는 사람들</h1>
+    <p class="page-lead">
+      TeamYumYum은 {members.length}명이에요. 기능을 프론트·백엔드로 나누는 대신, 도메인 하나를 한 사람이
+      폰 화면부터 서버와 DB까지 세로로 맡아요.
+    </p>
+
+    <section aria-labelledby="ctx-title">
+      <h2 id="ctx-title" class="section-title">도메인 담당</h2>
+      <p class="note">
+        담당자는 자기 도메인의 개념, 규칙, API, 테이블을 가지고 있어요. 다른 사람이 그 도메인 코드를 고칠 수는 있지만,
+        그 변경의 리뷰는 담당자가 해요. 도메인끼리는 이벤트로 상태를 알리고 조회만 서로 호출해요.
+      </p>
+      <ul class="grid">
+        {CONTEXTS.map((c) => {
+          const m = owner(c.id);
+          return (
+            <li class="card">
+              <div class="ctx">
+                <span class="ctx-name">{c.name}</span>
+                <span class="ctx-id">{c.id}</span>
+              </div>
+              <p class="summary">{c.summary}</p>
+              {m && (
+                <a class="person" href={`/authors/${m.id}`}>
+                  {m.data.github
+                    ? <img src={`https://github.com/${m.data.github}.png?size=96`} alt="" width="40" height="40" loading="lazy" />
+                    : <span class="initial" aria-hidden="true">{m.data.name.slice(0, 1)}</span>}
+                  <span>
+                    <strong>{m.data.name}</strong>
+                    {m.data.lead && <span class="lead-badge">팀장</span>}
+                  </span>
+                </a>
+              )}
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+
+    <section class="tracks" aria-labelledby="track-title">
+      <h2 id="track-title" class="section-title">함께 쓰는 길을 맡은 사람</h2>
+      <p class="note">
+        어느 도메인에도 속하지 않는 공용 코드와 표면은 담당을 따로 정했어요. 앱 테마와 내비게이션, 서버의 인증과 오류 형식,
+        인프라와 배포, 웹 대시보드, AI 모델 학습과 서빙, 그리고 AI와 사람이 함께 지키는 저장소 규칙이에요.
+      </p>
+      <ul class="track-list">
+        {tracks.map((m) => (
+          <li>
+            <strong>{m.data.name}</strong>
+            <span class="tags">{m.data.tracks.map((t) => <span class="chip">{t}</span>)}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .note { color: var(--text-dim); margin: calc(var(--space-3) * -1) 0 var(--space-6); max-width: 64ch; }
+  .grid { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); list-style: none; margin: 0; padding: 0; }
+  .card {
+    display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-6);
+    border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--bg-elev); box-shadow: var(--shadow-card);
+  }
+  .ctx { display: flex; align-items: baseline; gap: var(--space-2); }
+  .ctx-name { font-size: var(--fs-500); font-weight: 800; }
+  .ctx-id { color: var(--brand-text); font-weight: 700; font-size: var(--fs-200); }
+  .summary { margin: 0; color: var(--text-dim); font-size: var(--fs-300); flex: 1; }
+  .person { display: inline-flex; align-items: center; gap: var(--space-3); padding-top: var(--space-3); border-top: 1px solid var(--border); }
+  .person img, .initial { width: 40px; height: 40px; border-radius: 50%; flex: none; }
+  .initial { display: inline-flex; align-items: center; justify-content: center; background: var(--brand-weak); color: var(--brand-text); font-weight: 800; }
+  .lead-badge { margin-left: var(--space-2); padding: 1px 8px; border-radius: var(--radius-pill); background: var(--brand); color: var(--on-brand); font-size: var(--fs-100); font-weight: 700; vertical-align: 2px; }
+
+  .tracks { margin-top: var(--space-16); }
+  .track-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-3); }
+  .track-list li { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); padding: var(--space-4) var(--space-5); border-radius: var(--radius-md); background: var(--bg-sub); }
+  .track-list strong { min-width: 5em; }
+  .tags { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .tags .chip { background: var(--bg-elev); font-size: var(--fs-200); padding: 4px 12px; }
+</style>
