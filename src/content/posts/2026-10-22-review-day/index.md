@@ -3,7 +3,7 @@ title: "리뷰데이: 내가 만든 기능을 팀의 이해로 연결하는 시�
 description: "한 주 동안 만든 기능을 공유하는 TeamYumYum의 리뷰데이. 화면부터 서버, DB와 AI까지 이어지는 흐름과 구현 과정의 고민을 함께 나눠요."
 pubDate: 2026-10-22
 category: culture
-authors: [teamyumyum]
+authors: [park-sihyun]
 tags: [리뷰데이, 팀 문화, 협업]
 cover: ./review-day.jpg
 coverAlt: "시퀀스 다이어그램을 띄워 놓고 기능의 동작 흐름을 이야기하는 팀원들"
