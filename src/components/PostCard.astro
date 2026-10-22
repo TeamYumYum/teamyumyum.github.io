@@ -20,7 +20,7 @@ const authors = await getPostAuthors(post);
 ---
 
 <article class:list={['card', { featured }]}>
-  <a class="cover" href={`/posts/${post.id}`} tabindex="-1" aria-hidden="true" data-cat={category.id}>
+  <a class="cover" href={`/posts/${post.id}`} tabindex="-1" aria-hidden="true" data-cat={category.id} style={post.data.cover ? `--cover-ratio: ${post.data.cover.width} / ${post.data.cover.height}` : undefined}>
     {post.data.cover
       ? <><Image class="cover-photo" src={post.data.cover} alt="" widths={[480, 960]} sizes="(max-width: 720px) 100vw, 480px" /><span class="photo-mascot"><Mascot pose={POSE_BY_CATEGORY[category.id]} size={featured ? 150 : 100} /></span></>
       : <span class="placeholder"><span>{category.name}</span><Mascot pose={POSE_BY_CATEGORY[category.id]} size={featured ? 260 : 150} /></span>}
@@ -51,7 +51,7 @@ const authors = await getPostAuthors(post);
   }
   .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-card-hover); }
 
-  .cover { position: relative; display: block; aspect-ratio: 16 / 9; overflow: hidden; background: var(--bg-sub); }
+  .cover { position: relative; display: block; aspect-ratio: var(--cover-ratio, 16 / 9); overflow: hidden; background: var(--bg-sub); }
   .cover :global(img) { width: 100%; height: 100%; object-fit: cover; }
   .cover :global(.cover-photo) { position: absolute; inset: 0; }
   .photo-mascot {
@@ -89,7 +89,7 @@ const authors = await getPostAuthors(post);
   /* 홈 첫 글: 넓은 화면에서 이미지와 글을 나란히 둔다 */
   @media (min-width: 860px) {
     .featured { flex-direction: row; }
-    .featured .cover { flex: 0 0 52%; aspect-ratio: auto; min-height: 320px; }
+    .featured .cover { flex: 0 0 52%; }
     .featured .body { padding: var(--space-8); justify-content: center; }
     .featured h3 { font-size: var(--fs-600); }
     .featured .desc { -webkit-line-clamp: 3; font-size: var(--fs-400); }
