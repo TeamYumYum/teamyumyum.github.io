@@ -5,7 +5,7 @@ pubDate: 2026-10-22
 category: culture
 authors: [teamyumyum]
 tags: [리뷰데이, 팀 문화, 협업]
-cover: ./review-day-cover.png
+cover: ./review-day.jpg
 coverAlt: "시퀀스 다이어그램을 띄워 놓고 기능의 동작 흐름을 이야기하는 팀원들"
 ---
 
