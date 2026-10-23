@@ -70,8 +70,24 @@ main .gsc-comment-box:not(.gsc-comment-box-is-reply) {
   overflow: hidden;
 }
 
+/* 작성하기·미리보기: 정렬 버튼과 같은 알약 모양으로 맞춘다 */
+main .gsc-comment-box-tabs > div {
+  display: flex;
+  gap: 4px;
+  margin: 8px;
+}
+
 main .gsc-comment-box-tabs button {
+  margin: 0;
+  padding: 6px 14px;
+  border: 0;
+  border-radius: 999px;
   font-weight: 600;
+}
+
+main .gsc-comment-box-tabs button.color-bg-canvas {
+  font-weight: 700;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 8%);
 }
 
 main .gsc-comment-box-textarea {
@@ -89,8 +105,16 @@ main .gsc-comment-box-write {
   border-radius: 12px;
 }
 
+/* 입력 중 표시는 주황 링 대신 테두리를 한 단계 진하게만 한다 */
 main .gsc-comment-box-write:focus-within {
-  box-shadow: 0 0 0 2px var(--color-accent-emphasis);
+  box-shadow: none;
+}
+
+main .gsc-comment-box-write:focus-within .gsc-comment-box-textarea,
+main .gsc-comment-box-write:focus-within .gsc-comment-box-textarea-extras,
+main .form-control:focus {
+  border-color: var(--color-fg-subtle);
+  box-shadow: none;
 }
 
 main .btn {
@@ -157,6 +181,14 @@ main .gsc-comment-footer {
 
 main .gsc-comment-reactions {
   margin-left: 0;
+}
+
+/*
+ * 추천(↑) 버튼은 GitHub가 앱 토큰의 추천을 막아 giscus에서 늘 비활성이다.
+ * 작성자 본인의 자동 추천 1만 보여 의미가 없어 숨긴다. 반응 이모지는 그대로 쓴다.
+ */
+main .gsc-upvote-button {
+  display: none;
 }
 
 main .gsc-comment-replies-count {
