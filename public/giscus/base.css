@@ -1,22 +1,22 @@
 /*
  * giscus 커스텀 테마의 공통 모양. 색은 light.css·dark.css가 main에 변수로 넣고, 여기서는 그 변수만 쓴다.
- * giscus 기본 스타일이 클래스 하나로 걸려 있어 main 접두로 한 단계 높여 덮는다.
+ * giscus의 Tailwind 유틸리티는 `#__next .rounded-md`처럼 ID가 붙어 있어, 우리 규칙도 #__next main으로 시작해야 이긴다.
  * 클래스 이름은 giscus/giscus의 components/*.tsx, styles/base.css 기준이다.
  */
 
-main {
+#__next main {
   font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   color: var(--color-fg-default);
 }
 
 /* 글 반응 */
-main .gsc-reactions-count {
+#__next main .gsc-reactions-count {
   font-size: 15px;
   font-weight: 600;
   color: var(--color-fg-muted);
 }
 
-main .gsc-social-reaction-summary-item {
+#__next main .gsc-social-reaction-summary-item {
   height: 30px;
   padding: 0 10px;
   font-size: 13px;
@@ -24,60 +24,60 @@ main .gsc-social-reaction-summary-item {
   font-variant-numeric: tabular-nums;
 }
 
-main .gsc-social-reaction-summary-item.has-reacted {
+#__next main .gsc-social-reaction-summary-item.has-reacted {
   font-weight: 700;
 }
 
 /* 댓글 수와 정렬 */
-main .gsc-comments-count,
-main .gsc-comments-count-separator,
-main .gsc-replies-count {
+#__next main .gsc-comments-count,
+#__next main .gsc-comments-count-separator,
+#__next main .gsc-replies-count {
   font-size: 20px;
   font-weight: 700;
   letter-spacing: -0.01em;
 }
 
-main .BtnGroup {
+#__next main .BtnGroup {
   padding: 3px;
   border-radius: 999px;
 }
 
-main .BtnGroup-item {
+#__next main .BtnGroup-item {
   padding: 0;
   border: 0;
   border-radius: 999px;
 }
 
-main .BtnGroup-item .btn {
+#__next main .BtnGroup-item .btn {
   padding: 4px 12px;
   border-radius: 999px;
   font-size: 13px;
   color: var(--color-fg-subtle);
 }
 
-main .BtnGroup-item.BtnGroup-item--selected {
+#__next main .BtnGroup-item.BtnGroup-item--selected {
   box-shadow: 0 1px 2px rgb(0 0 0 / 8%);
 }
 
-main .BtnGroup-item.BtnGroup-item--selected .btn {
+#__next main .BtnGroup-item.BtnGroup-item--selected .btn {
   color: var(--color-fg-default);
   font-weight: 700;
 }
 
 /* 입력창 */
-main .gsc-comment-box:not(.gsc-comment-box-is-reply) {
+#__next main .gsc-comment-box:not(.gsc-comment-box-is-reply) {
   border-radius: 20px;
   overflow: hidden;
 }
 
 /* 작성하기·미리보기: 정렬 버튼과 같은 알약 모양으로 맞춘다 */
-main .gsc-comment-box-tabs > div {
+#__next main .gsc-comment-box-tabs > div {
   display: flex;
   gap: 4px;
   margin: 8px;
 }
 
-main .gsc-comment-box-tabs button {
+#__next main .gsc-comment-box-tabs button {
   margin: 0;
   padding: 6px 14px;
   border: 0;
@@ -85,44 +85,44 @@ main .gsc-comment-box-tabs button {
   font-weight: 600;
 }
 
-main .gsc-comment-box-tabs button.color-bg-canvas {
+#__next main .gsc-comment-box-tabs button.color-bg-canvas {
   font-weight: 700;
   box-shadow: 0 1px 2px rgb(0 0 0 / 8%);
 }
 
-main .gsc-comment-box-textarea {
+#__next main .gsc-comment-box-textarea {
   padding: 12px 14px;
   font-size: 15px;
   line-height: 1.6;
   border-radius: 12px 12px 0 0;
 }
 
-main .gsc-comment-box-textarea-extras {
+#__next main .gsc-comment-box-textarea-extras {
   border-radius: 0 0 12px 12px;
 }
 
-main .gsc-comment-box-write {
+#__next main .gsc-comment-box-write {
   border-radius: 12px;
 }
 
 /* 입력 중 표시는 주황 링 대신 테두리를 한 단계 진하게만 한다 */
-main .gsc-comment-box-write:focus-within {
+#__next main .gsc-comment-box-write:focus-within {
   box-shadow: none;
 }
 
-main .gsc-comment-box-write:focus-within .gsc-comment-box-textarea,
-main .gsc-comment-box-write:focus-within .gsc-comment-box-textarea-extras,
-main .form-control:focus {
+#__next main .gsc-comment-box-write:focus-within .gsc-comment-box-textarea,
+#__next main .gsc-comment-box-write:focus-within .gsc-comment-box-textarea-extras,
+#__next main .form-control:focus {
   border-color: var(--color-fg-subtle);
   box-shadow: none;
 }
 
-main .btn {
+#__next main .btn {
   border-radius: 999px;
   font-weight: 600;
 }
 
-main .btn-primary {
+#__next main .btn-primary {
   padding: 7px 18px;
   border: 0;
   font-weight: 700;
@@ -130,56 +130,56 @@ main .btn-primary {
 }
 
 /* 댓글 카드: 테두리 없이 연회색 바닥에 크게 둥글린다 */
-main .gsc-comment > div {
+#__next main .gsc-comment > div {
   border: 0;
   border-radius: 20px;
   overflow: hidden;
   background-color: var(--kk-card);
 }
 
-main .gsc-comment-header {
+#__next main .gsc-comment-header {
   padding: 18px 24px 0;
   gap: 10px;
 }
 
-main .gsc-comment-author-avatar img {
+#__next main .gsc-comment-author-avatar img {
   width: 36px;
   height: 36px;
 }
 
-main .gsc-comment-author .link-primary,
-main .gsc-reply-author .link-primary {
+#__next main .gsc-comment-author .link-primary,
+#__next main .gsc-reply-author .link-primary {
   font-size: 15px;
   font-weight: 700;
   color: var(--color-fg-default);
 }
 
-main .gsc-comment-author .link-secondary,
-main .gsc-reply-author .link-secondary {
+#__next main .gsc-comment-author .link-secondary,
+#__next main .gsc-reply-author .link-secondary {
   font-size: 13px;
   color: var(--color-fg-subtle);
 }
 
 /* Owner·Member 같은 작성자 표시 */
-main span.color-box-border-info {
+#__next main span.color-box-border-info {
   border-color: transparent;
   background-color: var(--color-accent-subtle);
   color: var(--color-accent-fg);
   font-weight: 700;
 }
 
-main .gsc-comment-content {
+#__next main .gsc-comment-content {
   padding: 10px 24px 14px;
   font-size: 15px;
   line-height: 1.75;
 }
 
-main .gsc-comment-footer {
+#__next main .gsc-comment-footer {
   padding: 0 24px;
   margin-bottom: 18px;
 }
 
-main .gsc-comment-reactions {
+#__next main .gsc-comment-reactions {
   margin-left: 0;
 }
 
@@ -187,44 +187,44 @@ main .gsc-comment-reactions {
  * 추천(↑) 버튼은 GitHub가 앱 토큰의 추천을 막아 giscus에서 늘 비활성이다.
  * 작성자 본인의 자동 추천 1만 보여 의미가 없어 숨긴다. 반응 이모지는 그대로 쓴다.
  */
-main .gsc-upvote-button {
+#__next main .gsc-upvote-button {
   display: none;
 }
 
-main .gsc-comment-replies-count {
+#__next main .gsc-comment-replies-count {
   margin-right: 0;
 }
 
 /* 답글: 카드 안에서 선 하나로 나눈다 */
-main .gsc-replies {
+#__next main .gsc-replies {
   background-color: transparent;
   border-color: var(--color-border-muted);
   padding-top: 12px;
 }
 
-main .gsc-reply-content {
+#__next main .gsc-reply-content {
   font-size: 15px;
   line-height: 1.7;
 }
 
-main .gsc-reply-box {
+#__next main .gsc-reply-box {
   background-color: transparent;
   border-color: var(--color-border-muted);
   padding: 12px 20px 16px;
 }
 
-main .gsc-reply-box button {
+#__next main .gsc-reply-box button {
   padding: 8px 14px;
   border-radius: 999px;
   background-color: var(--color-canvas-default);
 }
 
 /* 본문 마크다운 */
-main .markdown code {
+#__next main .markdown code {
   border-radius: 6px;
   background-color: var(--color-canvas-default);
 }
 
-main .markdown a {
+#__next main .markdown a {
   color: var(--color-accent-fg);
 }
