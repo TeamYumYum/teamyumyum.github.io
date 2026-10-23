@@ -14,9 +14,9 @@ export const SITE = {
   // giscus.app에서 발급한 뒤 채운다. repoId나 categoryId가 비어 있으면 댓글을 그리지 않는다.
   giscus: {
     repo: 'TeamYumYum/teamyumyum.github.io',
-    repoId: '',
+    repoId: 'R_kgDOVPrnMQ',
     category: 'Announcements',
-    categoryId: '',
+    categoryId: 'DIC_kwDOVPrnMc4DJYGv',
   },
 } as const;
 

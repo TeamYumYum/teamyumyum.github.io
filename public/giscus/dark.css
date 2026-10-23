@@ -1,0 +1,111 @@
+/*
+ * 블로그 다크 테마(src/styles/tokens.css)에 맞춘 giscus 테마.
+ * 변수 목록은 giscus의 styles/themes/dark.css를 따르고, 색만 블로그 토큰으로 바꿨다.
+ */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+@import url('./base.css');
+
+/* 블로그와 같은 color-scheme이어야 iframe 바닥이 투명하게 비친다 */
+:root {
+  color-scheme: dark;
+}
+
+main {
+  --color-prettylights-syntax-comment: #8b949e;
+  --color-prettylights-syntax-constant: #79c0ff;
+  --color-prettylights-syntax-entity: #d2a8ff;
+  --color-prettylights-syntax-storage-modifier-import: #c9d1d9;
+  --color-prettylights-syntax-entity-tag: #7ee787;
+  --color-prettylights-syntax-keyword: #ff7b72;
+  --color-prettylights-syntax-string: #a5d6ff;
+  --color-prettylights-syntax-variable: #ffa657;
+  --color-prettylights-syntax-brackethighlighter-unmatched: #f85149;
+  --color-prettylights-syntax-invalid-illegal-text: #f0f6fc;
+  --color-prettylights-syntax-invalid-illegal-bg: #8e1519;
+  --color-prettylights-syntax-carriage-return-text: #f0f6fc;
+  --color-prettylights-syntax-carriage-return-bg: #b62324;
+  --color-prettylights-syntax-string-regexp: #7ee787;
+  --color-prettylights-syntax-markup-list: #f2cc60;
+  --color-prettylights-syntax-markup-heading: #1f6feb;
+  --color-prettylights-syntax-markup-italic: #c9d1d9;
+  --color-prettylights-syntax-markup-bold: #c9d1d9;
+  --color-prettylights-syntax-markup-deleted-text: #ffdcd7;
+  --color-prettylights-syntax-markup-deleted-bg: #67060c;
+  --color-prettylights-syntax-markup-inserted-text: #aff5b4;
+  --color-prettylights-syntax-markup-inserted-bg: #033a16;
+  --color-prettylights-syntax-markup-changed-text: #ffdfb6;
+  --color-prettylights-syntax-markup-changed-bg: #5a1e02;
+  --color-prettylights-syntax-markup-ignored-text: #c9d1d9;
+  --color-prettylights-syntax-markup-ignored-bg: #1158c7;
+  --color-prettylights-syntax-meta-diff-range: #d2a8ff;
+  --color-prettylights-syntax-brackethighlighter-angle: #8b949e;
+  --color-prettylights-syntax-sublimelinter-gutter-mark: #484f58;
+  --color-prettylights-syntax-constant-other-reference-link: #a5d6ff;
+
+  --color-btn-text: #eceef1;
+  --color-btn-bg: #1e2025;
+  --color-btn-border: #2e3138;
+  --color-btn-shadow: none;
+  --color-btn-inset-shadow: none;
+  --color-btn-hover-bg: #262930;
+  --color-btn-hover-border: #3a3e46;
+  --color-btn-active-bg: #2e3138;
+  --color-btn-active-border: #3a3e46;
+  --color-btn-selected-bg: #2e3138;
+  --color-btn-primary-text: #ffffff;
+  --color-btn-primary-bg: #ff7a1f;
+  --color-btn-primary-border: transparent;
+  --color-btn-primary-shadow: none;
+  --color-btn-primary-inset-shadow: none;
+  --color-btn-primary-hover-bg: #ff8a3a;
+  --color-btn-primary-hover-border: transparent;
+  --color-btn-primary-selected-bg: #f26a10;
+  --color-btn-primary-selected-shadow: none;
+  --color-btn-primary-disabled-text: rgb(255 255 255 / 60%);
+  --color-btn-primary-disabled-bg: #6b3a1a;
+  --color-btn-primary-disabled-border: transparent;
+  --color-action-list-item-default-hover-bg: rgb(236 238 241 / 6%);
+  --color-segmented-control-bg: #1b1d21;
+  --color-segmented-control-button-bg: #2e3138;
+  --color-segmented-control-button-selected-border: transparent;
+
+  --color-fg-default: #eceef1;
+  --color-fg-muted: #b0b6c0;
+  --color-fg-subtle: #868b94;
+  --color-canvas-default: #121316;
+  --color-canvas-overlay: #1e2025;
+  --color-canvas-inset: #1b1d21;
+  --color-canvas-subtle: #1b1d21;
+  --color-border-default: #2e3138;
+  --color-border-muted: #26292f;
+  --color-neutral-muted: rgb(134 139 148 / 25%);
+  --color-accent-fg: #ff9a52;
+  --color-accent-emphasis: #ff7a1f;
+  --color-accent-muted: rgb(255 122 31 / 40%);
+  --color-accent-subtle: #2e1d12;
+  --color-success-fg: #6fd6ab;
+  --color-attention-fg: #e6c66e;
+  --color-attention-muted: rgb(187 128 9 / 40%);
+  --color-attention-subtle: #2b2412;
+  --color-danger-fg: #f85149;
+  --color-danger-muted: rgb(248 81 73 / 40%);
+  --color-danger-subtle: rgb(248 81 73 / 15%);
+  --color-primer-shadow-inset: none;
+  --color-scale-gray-7: #2e3138;
+  --color-scale-blue-8: #3a2416;
+
+  --color-social-reaction-bg-hover: var(--color-scale-gray-7);
+  --color-social-reaction-bg-reacted-hover: var(--color-scale-blue-8);
+
+  /* 이 테마에서만 쓰는 값 */
+  --kk-card: #1b1d21;
+  --kk-chip-bg: #1e2025;
+}
+
+main .pagination-loader-container {
+  background-image: url('https://github.com/images/modules/pulls/progressive-disclosure-line-dark.svg');
+}
+
+main .gsc-loading-image {
+  background-image: url('https://github.githubassets.com/images/mona-loading-dark.gif');
+}
