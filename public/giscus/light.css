@@ -5,9 +5,11 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
 @import url('./base.css');
 
-/* 블로그와 같은 color-scheme이어야 iframe 바닥이 투명하게 비친다 */
-:root {
+/* dark.css와 짝을 맞춰 블로그 바탕색을 직접 깐다 */
+:root,
+body {
   color-scheme: light;
+  background-color: #ffffff;
 }
 
 main {
