@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="470" viewBox="0 0 1120 470" role="img" aria-labelledby="title desc">
+  <title id="title">정책별 재시도 증폭률과 최종 성공률</title>
+  <desc id="desc">재시도 증폭률은 고정 2초 6.00, 지수 백오프 5.82, full jitter 5.77로 거의 같다. 최종 성공률은 재시도 없음 0%, 고정 2초 17.4%, 지수 백오프 36.1%, full jitter 85.3%다.</desc>
+  <rect width="1120" height="470" rx="24" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Malgun Gothic', sans-serif">
+    <text x="48.0" y="57.0" font-size="27" font-weight="700" fill="#17212e" text-anchor="start">시도는 거의 같은데, 성공률은 두 배가 넘게 차이 나요</text>
+    <text x="48.0" y="89.0" font-size="16" font-weight="400" fill="#526174" text-anchor="start">시드 5개 평균 · 막대 끝 가는 선은 시드 5개의 최솟값~최댓값</text>
+    <text x="230.0" y="150.0" font-size="16" font-weight="700" fill="#17212e" text-anchor="start">재시도 증폭률 (시도 수 ÷ 클라이언트 수)</text>
+    <text x="620.0" y="150.0" font-size="16" font-weight="700" fill="#17212e" text-anchor="start">최종 성공률</text>
+    <path d="M230.0 165V412" stroke="#e2e8f0"/>
+    <text x="230.0" y="432.0" font-size="13" font-weight="400" fill="#8a96a6" text-anchor="middle">0</text>
+    <path d="M326.7 165V412" stroke="#e2e8f0"/>
+    <text x="326.7" y="432.0" font-size="13" font-weight="400" fill="#8a96a6" text-anchor="middle">2</text>
+    <path d="M423.3 165V412" stroke="#e2e8f0"/>
+    <text x="423.3" y="432.0" font-size="13" font-weight="400" fill="#8a96a6" text-anchor="middle">4</text>
+    <path d="M520.0 165V412" stroke="#e2e8f0"/>
+    <text x="520.0" y="432.0" font-size="13" font-weight="400" fill="#8a96a6" text-anchor="middle">6</text>
+    <path d="M620.0 165V412" stroke="#e2e8f0"/>
+    <text x="620.0" y="432.0" font-size="13" font-weight="400" fill="#8a96a6" text-anchor="middle">0%</text>
+    <path d="M725.0 165V412" stroke="#e2e8f0"/>
+    <text x="725.0" y="432.0" font-size="13" font-weight="400" fill="#8a96a6" text-anchor="middle">25%</text>
+    <path d="M830.0 165V412" stroke="#e2e8f0"/>
+    <text x="830.0" y="432.0" font-size="13" font-weight="400" fill="#8a96a6" text-anchor="middle">50%</text>
+    <path d="M935.0 165V412" stroke="#e2e8f0"/>
+    <text x="935.0" y="432.0" font-size="13" font-weight="400" fill="#8a96a6" text-anchor="middle">75%</text>
+    <path d="M1040.0 165V412" stroke="#e2e8f0"/>
+    <text x="1040.0" y="432.0" font-size="13" font-weight="400" fill="#8a96a6" text-anchor="middle">100%</text>
+    <text x="210.0" y="196.0" font-size="16" font-weight="600" fill="#17212e" text-anchor="end">재시도 없음</text>
+    <rect x="230" y="177.0" width="48.3" height="26" rx="4" fill="#8a96a6"/>
+    <text x="286.3" y="195.0" font-size="15" font-weight="600" fill="#17212e" text-anchor="start">1.00</text>
+    <text x="628.0" y="195.0" font-size="15" font-weight="600" fill="#17212e" text-anchor="start">0%</text>
+    <path d="M230 170V210M620 170V210" stroke="#8a96a6"/>
+    <text x="210.0" y="260.0" font-size="16" font-weight="600" fill="#17212e" text-anchor="end">고정 2초</text>
+    <rect x="230" y="241.0" width="290.0" height="26" rx="4" fill="#2a78d6"/>
+    <text x="528.0" y="259.0" font-size="15" font-weight="600" fill="#17212e" text-anchor="start">6.00</text>
+    <rect x="620" y="241.0" width="72.9" height="26" rx="4" fill="#2a78d6"/>
+    <path d="M690.1 254H698.5M690.1 247V261M698.5 247V261" stroke="#17212e" stroke-width="2"/>
+    <text x="708.5" y="259.0" font-size="15" font-weight="600" fill="#17212e" text-anchor="start">17.4%</text>
+    <path d="M230 234V274M620 234V274" stroke="#8a96a6"/>
+    <text x="210.0" y="324.0" font-size="16" font-weight="600" fill="#17212e" text-anchor="end">지수 백오프</text>
+    <rect x="230" y="305.0" width="281.1" height="26" rx="4" fill="#eb6834"/>
+    <text x="519.1" y="323.0" font-size="15" font-weight="600" fill="#17212e" text-anchor="start">5.82</text>
+    <rect x="620" y="305.0" width="151.7" height="26" rx="4" fill="#eb6834"/>
+    <path d="M762.8 318H779.6M762.8 311V325M779.6 311V325" stroke="#17212e" stroke-width="2"/>
+    <text x="789.6" y="323.0" font-size="15" font-weight="600" fill="#17212e" text-anchor="start">36.1%</text>
+    <path d="M230 298V338M620 298V338" stroke="#8a96a6"/>
+    <text x="210.0" y="388.0" font-size="16" font-weight="600" fill="#17212e" text-anchor="end">full jitter</text>
+    <rect x="230" y="369.0" width="278.8" height="26" rx="4" fill="#1baf7a"/>
+    <text x="516.8" y="387.0" font-size="15" font-weight="600" fill="#17212e" text-anchor="start">5.77</text>
+    <rect x="620" y="369.0" width="358.1" height="26" rx="4" fill="#1baf7a"/>
+    <path d="M969.9 382H986.7M969.9 375V389M986.7 375V389" stroke="#17212e" stroke-width="2"/>
+    <text x="996.7" y="387.0" font-size="15" font-weight="600" fill="#17212e" text-anchor="start">85.3%</text>
+    <path d="M230 362V402M620 362V402" stroke="#8a96a6"/>
+  </g>
+</svg>
