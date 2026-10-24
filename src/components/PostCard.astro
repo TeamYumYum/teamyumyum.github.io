@@ -1,98 +1,60 @@
 ---
+/*
+ * 글 카드. 테두리 없이 둥근 커버 아래에 제목·글쓴이를 두고, 맨 아래에 분류와 태그 칩을 붙인다.
+ * 설명(부제)은 글 안에서만 보여 준다. 커버는 글마다 반드시 있다(scripts/make-cover.mjs). 사진 비율이 달라도 16:9로 잘라 한 줄의 높이를 맞춘다.
+ */
 import { Image } from 'astro:assets';
 import { getCategory } from '../site.config';
-import { formatDate, getPostAuthors, readingMinutes, type Post } from '../lib/posts';
+import { formatDate, getPostAuthors, tagSlug, type Post } from '../lib/posts';
 import AuthorChips from './AuthorChips.astro';
-import Mascot, { type Pose } from './Mascot.astro';
 
-// 커버 사진이 없는 글은 카테고리에 맞는 꾸기 포즈를 대신 보여 준다
-const POSE_BY_CATEGORY: Record<string, Pose> = {
-  tech: 'laptop',
-  troubleshooting: 'f-q',
-  culture: 'camera',
-  news: 'phone',
-};
-
-interface Props { post: Post; featured?: boolean }
-const { post, featured = false } = Astro.props;
+interface Props { post: Post }
+const { post } = Astro.props;
 const category = getCategory(post.data.category);
 const authors = await getPostAuthors(post);
+const href = `/posts/${post.id}`;
 ---
 
-<article class:list={['card', { featured }]}>
-  <a class="cover" href={`/posts/${post.id}`} tabindex="-1" aria-hidden="true" data-cat={category.id} style={post.data.cover ? `--cover-ratio: ${post.data.cover.width} / ${post.data.cover.height}` : undefined}>
-    {post.data.cover
-      ? <><Image class="cover-photo" src={post.data.cover} alt="" widths={[480, 960]} sizes="(max-width: 720px) 100vw, 480px" /><span class="photo-mascot"><Mascot pose={POSE_BY_CATEGORY[category.id]} size={featured ? 150 : 100} /></span></>
-      : <span class="placeholder"><span>{category.name}</span><Mascot pose={POSE_BY_CATEGORY[category.id]} size={featured ? 260 : 150} /></span>}
+<article class="card">
+  <a class="cover" href={href} tabindex="-1" aria-hidden="true">
+    <Image src={post.data.cover} alt="" widths={[640, 1280]} sizes="(max-width: 720px) 100vw, 560px" />
   </a>
   <div class="body">
-    <div class="meta-top">
-      <span class="badge" data-cat={category.id}>{category.name}</span>
-      {post.data.draft && <span class="draft">초안</span>}
-    </div>
-    <h3><a href={`/posts/${post.id}`}>{post.data.title}</a></h3>
-    <p class="desc">{post.data.description}</p>
+    <h3><a href={href}>{post.data.title}{post.data.draft && <span class="draft">초안</span>}</a></h3>
     <div class="meta">
       <AuthorChips authors={authors} />
       <span class="dot" aria-hidden="true">·</span>
       <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
-      <span class="dot" aria-hidden="true">·</span>
-      <span>{readingMinutes(post.body)}분</span>
     </div>
+    <ul class="chips">
+      <li><a class="badge" data-cat={category.id} href={`/category/${category.id}`}>{category.name}</a></li>
+      {post.data.tags.slice(0, 3).map((t) => <li><a class="tag" href={`/tags/${tagSlug(t)}`}>{t}</a></li>)}
+    </ul>
   </div>
 </article>
 
 <style>
-  .card {
-    display: flex; flex-direction: column; overflow: hidden;
-    border-radius: var(--radius-lg); background: var(--bg-elev);
-    border: 1px solid var(--border); box-shadow: var(--shadow-card);
-    transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
-  }
-  .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-card-hover); }
+  .card { display: flex; flex-direction: column; }
 
-  .cover { position: relative; display: block; aspect-ratio: var(--cover-ratio, 16 / 9); overflow: hidden; background: var(--bg-sub); }
-  .cover :global(img) { width: 100%; height: 100%; object-fit: cover; }
-  .cover :global(.cover-photo) { position: absolute; inset: 0; }
-  .photo-mascot {
-    position: absolute; right: 3%; bottom: 4%; width: 22%; max-width: 150px;
-    pointer-events: none; filter: drop-shadow(0 3px 6px rgb(0 0 0 / 0.24));
-  }
-  .photo-mascot :global(.mascot) { height: auto; object-fit: contain; }
-  /* 커버가 없는 글은 카테고리 틴트 위에 이름을 크게 둔다 */
-  .placeholder {
-    position: relative; display: flex; align-items: flex-end; height: 100%; padding: var(--space-5);
-    font-size: var(--fs-600); font-weight: 800; letter-spacing: -0.02em;
-  }
-  .placeholder :global(.mascot) {
-    position: absolute; right: 6%; bottom: 8%; width: auto; max-width: 48%; max-height: 82%;
-    filter: drop-shadow(0 8px 12px rgb(0 0 0 / 0.08));
-    transition: transform var(--dur) var(--ease);
-  }
-  .card:hover .placeholder :global(.mascot) { transform: translateY(-4px) rotate(-3deg); }
-  .cover[data-cat='tech'] { background: var(--cat-tech-bg); color: var(--cat-tech-fg); }
-  .cover[data-cat='troubleshooting'] { background: var(--cat-troubleshooting-bg); color: var(--cat-troubleshooting-fg); }
-  .cover[data-cat='culture'] { background: var(--cat-culture-bg); color: var(--cat-culture-fg); }
-  .cover[data-cat='news'] { background: var(--cat-news-bg); color: var(--cat-news-fg); }
+  .cover { display: block; aspect-ratio: 16 / 9; overflow: hidden; border-radius: var(--radius-lg); background: var(--bg-sub); }
+  .cover :global(img) { width: 100%; height: 100%; object-fit: cover; transition: transform 400ms var(--ease); }
+  .card:hover .cover :global(img) { transform: scale(1.03); }
 
-  .body { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-5); flex: 1; }
-  .meta-top { display: flex; align-items: center; gap: var(--space-2); }
-  .draft { font-size: var(--fs-100); font-weight: 700; color: var(--text-subtle); border: 1px dashed var(--text-subtle); border-radius: var(--radius-pill); padding: 1px 8px; }
-  h3 { margin: 0; font-size: var(--fs-500); line-height: var(--lh-snug); letter-spacing: -0.01em; }
-  h3 a:hover { color: var(--brand-text); }
-  .desc {
-    margin: 0; color: var(--text-dim); font-size: var(--fs-300); line-height: var(--lh-normal);
-    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  .body { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-5) var(--space-2) 0; }
+  h3 { margin: 0; font-size: var(--fs-600); line-height: var(--lh-snug); letter-spacing: -0.02em; }
+  h3 a:hover, .card:hover h3 a { color: var(--brand-text); }
+  .draft {
+    margin-left: var(--space-2); vertical-align: middle;
+    font-size: var(--fs-100); font-weight: 700; color: var(--text-subtle);
+    border: 1px dashed var(--text-subtle); border-radius: var(--radius-pill); padding: 1px 8px;
   }
-  .meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: auto; padding-top: var(--space-3); color: var(--text-subtle); font-size: var(--fs-200); }
+  .meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; color: var(--text-subtle); font-size: var(--fs-200); }
 
-  /* 홈 첫 글: 넓은 화면에서 이미지와 글을 나란히 둔다 */
-  @media (min-width: 860px) {
-    .featured { flex-direction: row; }
-    .featured .cover { flex: 0 0 52%; }
-    .featured .body { padding: var(--space-8); justify-content: center; }
-    .featured h3 { font-size: var(--fs-600); }
-    .featured .desc { -webkit-line-clamp: 3; font-size: var(--fs-400); }
-    .featured .meta { margin-top: var(--space-4); }
+  .chips { display: flex; flex-wrap: wrap; gap: var(--space-2); list-style: none; margin: var(--space-3) 0 0; padding: 0; }
+  .tag {
+    display: inline-block; padding: 3px 10px; border: 1px solid var(--border); border-radius: var(--radius-sm);
+    color: var(--text-dim); font-size: var(--fs-200); font-weight: 600;
   }
+  .tag:hover { color: var(--text); border-color: var(--text-subtle); }
+  .chips .badge { border-radius: var(--radius-sm); padding: 3px 10px; }
 </style>

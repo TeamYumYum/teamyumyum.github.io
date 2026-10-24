@@ -3,13 +3,10 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Mascot from '../components/Mascot.astro';
 import PostCard from '../components/PostCard.astro';
-import PostGrid from '../components/PostGrid.astro';
 import { CATEGORIES, CONTEXTS, SITE } from '../site.config';
 import { getVisiblePosts } from '../lib/posts';
 
 const posts = await getVisiblePosts();
-const [featured, ...rest] = posts;
-const counts = Object.fromEntries(CATEGORIES.map((c) => [c.id, posts.filter((p) => p.data.category === c.id).length]));
 const members = (await getCollection('authors')).filter((a) => a.data.member);
 ---
 
@@ -26,26 +23,30 @@ const members = (await getCollection('authors')).filter((a) => a.data.member);
         </div>
       </div>
       <div class="art" aria-hidden="true">
+        <Mascot pose="wave" size={260} eager />
         <div class="bubble">오늘 점심 기록해 뒀어요!</div>
-        <Mascot pose="wave" size={300} eager />
       </div>
     </div>
   </section>
 
-  <section class="container cats" aria-label="분류">
-    {CATEGORIES.map((c) => (
-      <a class="cat" href={`/category/${c.id}`} data-cat={c.id}>
-        <span class="cat-name">{c.name}</span>
-        <span class="cat-desc">{c.description}</span>
-        <span class="cat-count">{counts[c.id]}개의 글</span>
-      </a>
-    ))}
-  </section>
-
   <section class="container latest" aria-labelledby="latest-title">
-    <h2 id="latest-title" class="section-title">새로 올라온 글</h2>
-    {featured && <div class="featured"><PostCard post={featured} featured /></div>}
-    <PostGrid posts={rest} empty={featured ? '다음 글을 준비하고 있어요.' : undefined} />
+    <div class="latest-head">
+      <h2 id="latest-title" class="section-title">새로 올라온 글</h2>
+      <div class="tabs" role="tablist" aria-label="분류">
+        <button class="chip" role="tab" aria-selected="true" data-filter="all">전체</button>
+        {CATEGORIES.map((c) => (
+          <button class="chip" role="tab" aria-selected="false" data-filter={c.id}>{c.name}</button>
+        ))}
+      </div>
+    </div>
+    {posts.length === 0
+      ? <p class="empty">아직 글이 없어요. 곧 첫 글로 찾아올게요.</p>
+      : (
+        <div class="feed">
+          {posts.map((p) => <div class="item" data-cat={p.data.category}><PostCard post={p} /></div>)}
+        </div>
+      )}
+    <p class="empty filtered" hidden>이 분류의 첫 글을 준비하고 있어요.</p>
   </section>
 
   <section class="container team" aria-labelledby="team-title">
@@ -65,9 +66,26 @@ const members = (await getCollection('authors')).filter((a) => a.data.member);
   </section>
 </BaseLayout>
 
+<script>
+  // 탭을 누르면 페이지를 옮기지 않고 그 분류의 글만 남긴다
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.tabs [data-filter]');
+  const items = document.querySelectorAll<HTMLElement>('.feed .item');
+  const filteredEmpty = document.querySelector<HTMLElement>('.empty.filtered')!;
+  tabs.forEach((tab) => tab.addEventListener('click', () => {
+    const f = tab.dataset.filter;
+    tabs.forEach((t) => t.setAttribute('aria-selected', String(t === tab)));
+    let shown = 0;
+    items.forEach((el) => {
+      el.hidden = !(f === 'all' || el.dataset.cat === f);
+      if (!el.hidden) shown++;
+    });
+    filteredEmpty.hidden = shown > 0;
+  }));
+</script>
+
 <style>
-  .hero { background: linear-gradient(180deg, var(--brand-weak), var(--bg)); padding-block: var(--space-16) var(--space-12); }
-  .hero-inner { display: grid; gap: var(--space-10); align-items: center; grid-template-columns: 1fr; }
+  .hero { background: linear-gradient(180deg, var(--brand-weak), var(--bg)); padding-block: var(--space-12) var(--space-10); }
+  .hero-inner { display: grid; gap: var(--space-8); align-items: center; }
   .eyebrow { margin: 0 0 var(--space-3); color: var(--brand-text); font-weight: 800; font-size: var(--fs-300); }
   h1 { margin: 0; font-size: var(--fs-display); line-height: var(--lh-tight); letter-spacing: -0.03em; white-space: pre-line; }
   .lead { margin: var(--space-5) 0 0; color: var(--text-dim); font-size: var(--fs-500); line-height: var(--lh-snug); max-width: 36ch; }
@@ -83,37 +101,36 @@ const members = (await getCollection('authors')).filter((a) => a.data.member);
   .btn:active { transform: scale(0.98); }
   .btn.primary { background: var(--brand); color: var(--on-brand); }
 
-  .art { position: relative; display: flex; justify-content: center; padding-top: var(--space-12); }
-  .art :global(.mascot) { width: min(300px, 64vw); height: auto; animation: bob 3.2s ease-in-out infinite; filter: drop-shadow(0 16px 24px rgb(0 0 0 / 0.08)); }
+  /* 마스코트를 글 쪽에 붙이고, 말풍선 꼬리가 꾸기의 부리를 가리키게 한다 */
+  .art { position: relative; justify-self: center; padding: var(--space-10) var(--space-4) 0 0; }
+  .art :global(.mascot) { width: min(260px, 56vw); height: auto; animation: bob 3.2s ease-in-out infinite; filter: drop-shadow(0 16px 24px rgb(0 0 0 / 0.08)); }
   .bubble {
-    position: absolute; top: 0; left: 50%; transform: translateX(-90%); z-index: 1;
-    padding: var(--space-3) var(--space-4); border-radius: var(--radius-lg) var(--radius-lg) var(--radius-lg) 4px;
+    position: absolute; top: 0; right: 55%; z-index: 1;
+    padding: var(--space-3) var(--space-4); border-radius: var(--radius-lg);
     background: var(--bg-elev); box-shadow: var(--shadow-card-hover); font-weight: 700; font-size: var(--fs-300); white-space: nowrap;
+  }
+  .bubble::after {
+    content: ''; position: absolute; right: 18px; bottom: -7px; width: 14px; height: 14px;
+    background: inherit; transform: rotate(45deg); border-radius: 0 0 4px 0;
   }
   @keyframes bob { 50% { transform: translateY(-8px); } }
 
   @media (min-width: 860px) {
-    .hero { padding-block: var(--space-20); }
-    .hero-inner { grid-template-columns: 1.3fr 1fr; }
-    .art { padding-top: var(--space-16); }
+    .hero-inner { grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-16); }
+    .art { justify-self: end; margin-right: var(--space-8); }
   }
 
-  .cats { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); margin-top: var(--space-4); }
-  .cat {
-    display: flex; flex-direction: column; gap: var(--space-1); padding: var(--space-5);
-    border-radius: var(--radius-lg); transition: transform var(--dur) var(--ease);
-  }
-  .cat:hover { transform: translateY(-3px); }
-  .cat[data-cat='tech'] { background: var(--cat-tech-bg); --c: var(--cat-tech-fg); }
-  .cat[data-cat='troubleshooting'] { background: var(--cat-troubleshooting-bg); --c: var(--cat-troubleshooting-fg); }
-  .cat[data-cat='culture'] { background: var(--cat-culture-bg); --c: var(--cat-culture-fg); }
-  .cat[data-cat='news'] { background: var(--cat-news-bg); --c: var(--cat-news-fg); }
-  .cat-name { color: var(--c); font-weight: 800; font-size: var(--fs-500); }
-  .cat-desc { color: var(--text-dim); font-size: var(--fs-300); }
-  .cat-count { margin-top: var(--space-2); color: var(--text-subtle); font-size: var(--fs-200); font-weight: 600; }
+  .latest { margin-top: var(--space-6); }
+  .latest-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-4); margin-bottom: var(--space-8); }
+  .latest-head .section-title { margin: 0; }
+  .tabs { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .tabs .chip { border: 0; cursor: pointer; font-family: inherit; }
+  .tabs .chip[aria-selected='true'] { background: var(--text); color: var(--bg); }
 
-  .latest { margin-top: var(--space-16); }
-  .featured { margin-bottom: var(--space-6); }
+  .feed { display: grid; gap: var(--space-16) var(--space-10); grid-template-columns: 1fr; }
+  @media (min-width: 720px) { .feed { grid-template-columns: repeat(2, 1fr); } }
+  .item[hidden] { display: none; }
+  .empty { color: var(--text-subtle); text-align: center; padding: var(--space-12) 0; }
 
   .team { margin-top: var(--space-20); }
   .team-card {

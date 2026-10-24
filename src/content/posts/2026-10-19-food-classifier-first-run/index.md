@@ -5,6 +5,7 @@ pubDate: 2026-10-19
 category: tech
 authors: [park-sihyun]
 tags: [AI, 컴퓨터비전, MLOps]
+cover: ./cover.png
 draft: true
 ---
 

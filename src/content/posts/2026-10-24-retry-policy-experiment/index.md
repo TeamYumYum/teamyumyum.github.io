@@ -5,6 +5,7 @@ pubDate: 2026-10-24
 category: tech
 authors: [park-sihyun]
 tags: [재시도, 지수 백오프, 지터, 장애 대응, Android, Spring]
+cover: ./cover.png
 ---
 
 꾸기의 API 규약에는 이런 한 줄이 있었어요.

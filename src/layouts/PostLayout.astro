@@ -77,5 +77,7 @@ const ogImage = cover ? cover.src : `/og/${post.id}.png`;
   .tags { display: flex; flex-wrap: wrap; gap: var(--space-2); list-style: none; margin: 0; padding: 0; }
 
   .related { margin-top: var(--space-20); }
-  .grid { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); }
+  /* 한 줄에 두 개. 카드에 테두리가 없으므로 간격으로 글을 나눈다 */
+  .grid { display: grid; gap: var(--space-16) var(--space-10); grid-template-columns: 1fr; }
+  @media (min-width: 720px) { .grid { grid-template-columns: repeat(2, 1fr); } }
 </style>
