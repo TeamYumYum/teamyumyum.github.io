@@ -18,5 +18,7 @@ const { posts, empty = '아직 글이 없어요. 곧 첫 글로 찾아올게요.
 <style>
   .empty-state { display: flex; flex-direction: column; align-items: center; gap: var(--space-3); }
   .empty-state p { margin: 0; }
-  .grid { display: grid; gap: var(--space-6); grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); }
+  /* 한 줄에 두 개. 카드에 테두리가 없으므로 간격으로 글을 나눈다 */
+  .grid { display: grid; gap: var(--space-16) var(--space-10); grid-template-columns: 1fr; }
+  @media (min-width: 720px) { .grid { grid-template-columns: repeat(2, 1fr); } }
 </style>

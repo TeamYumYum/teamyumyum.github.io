@@ -5,6 +5,7 @@ pubDate: 2026-10-19
 category: troubleshooting
 authors: [park-sihyun]
 tags: [MLflow, Python, Windows]
+cover: ./cover.png
 draft: true
 ---
 

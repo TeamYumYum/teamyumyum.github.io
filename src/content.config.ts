@@ -41,8 +41,8 @@ const posts = defineCollection({
       authors: z.array(reference('authors')).min(1),
       tags: z.array(z.string()).default([]),
       draft: z.boolean().default(false),
-      // 글 폴더 기준 상대 경로. 예: ./cover.jpg
-      cover: image().optional(),
+      // 글 폴더 기준 상대 경로. 예: ./cover.png (없으면 scripts/make-cover.mjs로 만든다)
+      cover: image(),
       coverAlt: z.string().optional(),
     }),
 });

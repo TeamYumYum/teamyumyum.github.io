@@ -1,0 +1,48 @@
+---
+/*
+ * '글' 탭의 머리. 분류 틴트 위에 이름과 설명을 두고, 그 분류 썸네일과 같은 꾸기 포즈를 곁들인다.
+ * 분류를 넘기지 않으면 전체 글 머리로 브랜드색과 정면 포즈를 쓴다.
+ */
+import Mascot from './Mascot.astro';
+import type { CATEGORIES } from '../site.config';
+
+interface Props { category?: (typeof CATEGORIES)[number]; count: number }
+const { category, count } = Astro.props;
+const name = category?.name ?? '전체 글';
+---
+
+<header class="banner" data-cat={category?.id ?? 'all'}>
+  <div>
+    <h1 class="page-title">{name}</h1>
+    <p class="lead">{category?.description ?? '꾸기를 만들며 쓴 글을 모두 모았어요.'}</p>
+    <p class="count">{count}개의 글</p>
+  </div>
+  <Mascot pose={category?.pose ?? 'front'} size={180} eager />
+</header>
+
+<style>
+  .banner {
+    display: flex; align-items: center; justify-content: space-between; gap: var(--space-6);
+    padding: var(--space-8); margin-bottom: var(--space-8);
+    border-radius: var(--radius-lg); overflow: hidden; color: var(--c); background: var(--bg-c);
+  }
+  .banner[data-cat='all'] { --bg-c: var(--brand-weak); --c: var(--brand-text); }
+  .banner[data-cat='tech'] { --bg-c: var(--cat-tech-bg); --c: var(--cat-tech-fg); }
+  .banner[data-cat='troubleshooting'] { --bg-c: var(--cat-troubleshooting-bg); --c: var(--cat-troubleshooting-fg); }
+  .banner[data-cat='culture'] { --bg-c: var(--cat-culture-bg); --c: var(--cat-culture-fg); }
+  .banner[data-cat='news'] { --bg-c: var(--cat-news-bg); --c: var(--cat-news-fg); }
+  .page-title { margin: 0; }
+  .lead { margin: var(--space-2) 0 0; color: var(--text-dim); font-size: var(--fs-400); }
+  .count { margin: var(--space-3) 0 0; color: var(--text-subtle); font-size: var(--fs-200); font-weight: 600; }
+  /* 꾸기는 배너 아래 가장자리에 걸치게 둔다 */
+  .banner :global(.mascot) {
+    width: auto; max-height: 150px; align-self: flex-end; margin-bottom: calc(-1 * var(--space-8));
+    filter: drop-shadow(0 8px 12px rgb(0 0 0 / 0.08));
+  }
+
+  @media (min-width: 860px) { .banner { max-width: 50%; } }
+  @media (max-width: 560px) {
+    .banner { padding: var(--space-6); }
+    .banner :global(.mascot) { max-height: 100px; margin-bottom: calc(-1 * var(--space-6)); }
+  }
+</style>

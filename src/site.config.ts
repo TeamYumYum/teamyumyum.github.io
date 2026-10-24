@@ -23,12 +23,13 @@ export const SITE = {
 /**
  * layout: 'doc'  → 넓은 본문 (기술·트러블슈팅)
  * layout: 'read' → 좁은 본문 (문화·소식)
+ * pose: 커버 없는 글의 썸네일과 분류 머리에 쓰는 꾸기 포즈
  */
 export const CATEGORIES = [
-  { id: 'tech', name: '기술', layout: 'doc', description: '설계와 구현, 실험의 기록' },
-  { id: 'troubleshooting', name: '트러블슈팅', layout: 'doc', description: '부딪힌 문제와 원인, 해결 과정' },
-  { id: 'culture', name: '문화', layout: 'read', description: '리뷰데이, 회고, 팀이 일하는 방식' },
-  { id: 'news', name: '소식', layout: 'read', description: '꾸기와 팀의 새 소식' },
+  { id: 'tech', name: '기술', layout: 'doc', description: '설계와 구현, 실험의 기록', pose: 'laptop' },
+  { id: 'troubleshooting', name: '트러블슈팅', layout: 'doc', description: '부딪힌 문제와 원인, 해결 과정', pose: 'f-q' },
+  { id: 'culture', name: '문화', layout: 'read', description: '리뷰데이, 회고, 팀이 일하는 방식', pose: 'camera' },
+  { id: 'news', name: '소식', layout: 'read', description: '꾸기와 팀의 새 소식', pose: 'phone' },
 ] as const;
 
 export type CategoryId = (typeof CATEGORIES)[number]['id'];

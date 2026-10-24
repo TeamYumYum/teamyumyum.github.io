@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import CategoryHeader from '../../components/CategoryHeader.astro';
 import CategoryTabs from '../../components/CategoryTabs.astro';
 import PostGrid from '../../components/PostGrid.astro';
 import { CATEGORIES } from '../../site.config';
@@ -18,8 +19,7 @@ const { category, posts } = Astro.props;
 
 <BaseLayout title={category.name} description={category.description}>
   <div class="page container">
-    <h1 class="page-title">{category.name}</h1>
-    <p class="page-lead">{category.description}</p>
+    <CategoryHeader category={category} count={posts.length} />
     <CategoryTabs current={category.id} />
     <PostGrid posts={posts} empty={`아직 ${category.name} 글이 없어요.`} />
   </div>

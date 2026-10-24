@@ -5,6 +5,7 @@ pubDate: 2026-10-19
 category: news
 authors: [teamyumyum]
 tags: [꾸기, 블로그]
+cover: ./cover.png
 ---
 
 안녕하세요, 꾸기를 만드는 **TeamYumYum**이에요.
