@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="920" viewBox="0 0 1040 920" role="img" aria-labelledby="title desc">
+<title id="title">사진 인식 · 대기 시간과 트랜잭션</title>
+<desc id="desc">폰에서 사진을 업로드하고 Spring 서버가 AI 연결과 인식 결과를 기다린 뒤 DB 트랜잭션으로 저장하고 응답하는 흐름. 연결은 최대 2초, 인식은 최대 10초이며 저장 실패 시 전체 롤백한다.</desc>
+<defs><marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M2 2 L10 6 L2 10" fill="none" stroke="#526174" stroke-width="1.4"/></marker></defs>
+<rect width="1040" height="920" rx="24" fill="#f1f2f4"/>
+<g font-family="Pretendard, Apple SD Gothic Neo, Malgun Gothic, sans-serif" fill="#263244">
+<text x="36" y="52" font-size="28" text-anchor="start">사진 인식 · 대기 시간과 트랜잭션</text>
+<text x="36" y="84" font-size="17" text-anchor="start" fill="#657184">MR 106  |  확정 URI: /api/v1/food-recognitions</text>
+<path d="M90 172 V878" stroke="#95a0ae" stroke-width="1.5" stroke-dasharray="9 9"/>
+<rect x="24" y="116" width="132" height="56" rx="12" fill="#e3eaf5" stroke="#8492a4" stroke-width="1.5"/>
+<text x="90" y="152" font-size="23" text-anchor="middle">폰</text>
+<path d="M370 172 V878" stroke="#95a0ae" stroke-width="1.5" stroke-dasharray="9 9"/>
+<rect x="304" y="116" width="132" height="56" rx="12" fill="#e3eaf5" stroke="#8492a4" stroke-width="1.5"/>
+<text x="370" y="152" font-size="23" text-anchor="middle">Spring</text>
+<path d="M650 172 V878" stroke="#95a0ae" stroke-width="1.5" stroke-dasharray="9 9"/>
+<rect x="584" y="116" width="132" height="56" rx="12" fill="#d9eee6" stroke="#8492a4" stroke-width="1.5"/>
+<text x="650" y="152" font-size="23" text-anchor="middle">DB</text>
+<path d="M910 172 V878" stroke="#95a0ae" stroke-width="1.5" stroke-dasharray="9 9"/>
+<rect x="844" y="116" width="132" height="56" rx="12" fill="#f9e4c9" stroke="#8492a4" stroke-width="1.5"/>
+<text x="910" y="152" font-size="23" text-anchor="middle">AI</text>
+<path d="M90 222 H370" fill="none" stroke="#526174" stroke-width="1.7" marker-end="url(#arrow)"/>
+<text x="230.0" y="208" font-size="20" text-anchor="middle">사진 업로드</text>
+<rect x="363" y="248" width="14" height="300" rx="4" fill="#ffe1ab" stroke="#d79630" stroke-width="1.5"/>
+<path d="M377 276 H910" fill="none" stroke="#526174" stroke-width="1.7" marker-end="url(#arrow)"/>
+<text x="643.5" y="262" font-size="20" text-anchor="middle">TCP 연결</text>
+<path d="M910 336 H377" fill="none" stroke="#526174" stroke-width="1.7" stroke-dasharray="8 7" marker-end="url(#arrow)"/>
+<text x="643.5" y="322" font-size="20" text-anchor="middle">연결 완료</text>
+<text x="388" y="310" font-size="17" text-anchor="start" fill="#946018">최대 2s</text>
+<path d="M377 400 H910" fill="none" stroke="#526174" stroke-width="1.7" marker-end="url(#arrow)"/>
+<text x="643.5" y="386" font-size="20" text-anchor="middle">음식 인식 요청</text>
+<rect x="903" y="400" width="14" height="126" rx="4" fill="#ffe1ab" stroke="#d79630" stroke-width="1.5"/>
+<text x="932" y="467" font-size="16" text-anchor="start" fill="#946018">최대 10s</text>
+<path d="M903 526 H377" fill="none" stroke="#526174" stroke-width="1.7" stroke-dasharray="8 7" marker-end="url(#arrow)"/>
+<text x="640.0" y="512" font-size="20" text-anchor="middle">인식 결과 또는 실패·시간 초과</text>
+<rect x="306" y="576" width="410" height="216" rx="24" fill="#e4f0e9" stroke="#78a88a" stroke-width="1.5"/>
+<text x="326" y="610" font-size="20" text-anchor="start" fill="#32694a">DB 트랜잭션</text>
+<path d="M370 620 V780" stroke="#95a0ae" stroke-width="1.5" stroke-dasharray="9 9"/>
+<path d="M650 620 V780" stroke="#95a0ae" stroke-width="1.5" stroke-dasharray="9 9"/>
+<rect x="363" y="630" width="14" height="116" rx="4" fill="#c4e4ce" stroke="#78a88a" stroke-width="1.5"/>
+<path d="M377 650 H650" fill="none" stroke="#526174" stroke-width="1.7" marker-end="url(#arrow)"/>
+<text x="513.5" y="636" font-size="20" text-anchor="middle">사진 + 결과 저장</text>
+<path d="M650 716 H377" fill="none" stroke="#526174" stroke-width="1.7" stroke-dasharray="8 7" marker-end="url(#arrow)"/>
+<text x="513.5" y="702" font-size="20" text-anchor="middle">커밋</text>
+<text x="510" y="770" font-size="16" text-anchor="middle" fill="#657184">저장 실패 시 전체 롤백</text>
+<path d="M370 854 H90" fill="none" stroke="#526174" stroke-width="1.7" stroke-dasharray="8 7" marker-end="url(#arrow)"/>
+<text x="230.0" y="840" font-size="20" text-anchor="middle">201 + 성공/실패 상태</text>
+<text x="395" y="854" font-size="16" text-anchor="start" fill="#32694a">커밋 성공 후</text>
+</g></svg>
