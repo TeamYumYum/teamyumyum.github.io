@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import CategoryHeader from '../../components/CategoryHeader.astro';
 import CategoryTabs from '../../components/CategoryTabs.astro';
 import PostGrid from '../../components/PostGrid.astro';
 import { getVisiblePosts } from '../../lib/posts';
@@ -10,7 +9,8 @@ const posts = await getVisiblePosts();
 
 <BaseLayout title="전체 글" description="꾸기 팀이 쓴 모든 글">
   <div class="page container">
-    <CategoryHeader count={posts.length} />
+    <h1 class="page-title">전체 글</h1>
+    <p class="page-lead">꾸기를 만들며 쓴 글을 모두 모았어요.</p>
     <CategoryTabs />
     <PostGrid posts={posts} />
   </div>
