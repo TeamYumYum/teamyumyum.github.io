@@ -95,7 +95,7 @@ src/
   content/posts/   글
   data/authors.json  필자와 팀원
   pages/           홈, 글, 카테고리, 태그, 팀, 필자, 꾸기 소개, 검색, RSS, OG 이미지
-  components/      카드, 내비게이션, 마스코트, 댓글, 목차
+  components/      카드, 내비게이션, 마스코트, 댓글
   layouts/         기본·글 레이아웃
 templates/         글 양식(기술, 트러블슈팅, 리뷰데이)
 ```
