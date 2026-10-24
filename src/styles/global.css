@@ -66,7 +66,9 @@ img { max-width: 100%; height: auto; display: block; }
 .prose > * + * { margin-top: 1.25em; }
 /* 큰 제목과 작은 제목, 본문의 크기 차이를 벌리고(28 · 20 · 17), 제목은 앞 문단과 멀리 · 뒤 문단과 가깝게 붙인다 */
 .prose h2 { font-size: var(--fs-700); font-weight: 800; line-height: var(--lh-tight); letter-spacing: -0.03em; margin: 3.2em 0 0; }
-.prose h3 { font-size: var(--fs-500); font-weight: 700; line-height: var(--lh-snug); letter-spacing: -0.02em; margin: 2.2em 0 0; }
+.prose h3 { position: relative; padding-left: 0.8em; font-size: var(--fs-500); font-weight: 700; line-height: var(--lh-snug); letter-spacing: -0.02em; margin: 2.2em 0 0; }
+/* 작은 제목은 본문의 굵은 글씨와 헷갈리지 않도록 앞에 브랜드색 막대를 붙인다 */
+.prose h3::before { content: ''; position: absolute; left: 0; top: 0.22em; bottom: 0.22em; width: 4px; border-radius: 2px; background: var(--brand); }
 .prose :is(h2, h3) + * { margin-top: 0.7em; }
 .prose p, .prose ul, .prose ol { margin-bottom: 0; }
 .prose ul, .prose ol { padding-left: 1.3em; }

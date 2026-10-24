@@ -1,16 +1,14 @@
 ---
-import type { MarkdownHeading } from 'astro';
 import { Image } from 'astro:assets';
 import BaseLayout from './BaseLayout.astro';
 import AuthorChips from '../components/AuthorChips.astro';
-import TableOfContents from '../components/TableOfContents.astro';
 import Comments from '../components/Comments.astro';
 import PostCard from '../components/PostCard.astro';
 import { getCategory } from '../site.config';
 import { formatDate, getPostAuthors, getRelatedPosts, readingMinutes, tagSlug, type Post } from '../lib/posts';
 
-interface Props { post: Post; headings: MarkdownHeading[] }
-const { post, headings } = Astro.props;
+interface Props { post: Post }
+const { post } = Astro.props;
 const { title, description, pubDate, tags, cover, coverAlt } = post.data;
 const category = getCategory(post.data.category);
 const isDoc = category.layout === 'doc';
@@ -42,11 +40,8 @@ const ogImage = cover ? cover.src : `/og/${post.id}.png`;
       </figure>
     )}
 
-    <div class:list={['layout', { doc: isDoc }]}>
-      <div class:list={['prose', isDoc ? 'w-doc' : 'w-read']}>
-        <slot />
-      </div>
-      {isDoc && <aside class="side"><TableOfContents headings={headings} /></aside>}
+    <div class:list={['prose', isDoc ? 'w-doc' : 'w-read']}>
+      <slot />
     </div>
 
     <footer class:list={['foot', isDoc ? 'w-doc' : 'w-read']} data-pagefind-ignore>
@@ -77,17 +72,6 @@ const ogImage = cover ? cover.src : `/og/${post.id}.png`;
 
   .cover { margin: 0 auto var(--space-12); }
   .cover :global(img) { width: 100%; border-radius: var(--radius-lg); max-height: 560px; object-fit: cover; }
-
-  /* 기술 글은 넓은 화면에서 오른쪽에 목차를 붙인다. 본문 폭은 그대로 두고 목차만 바깥에 띄운다 */
-  .layout { position: relative; }
-  .side { display: none; }
-  @media (min-width: 1240px) {
-    .doc .side {
-      display: block; position: absolute; top: 0; bottom: 0;
-      left: calc(50% + var(--w-doc) / 2 + var(--space-10)); width: 220px;
-    }
-    .doc .side :global(.toc) { position: sticky; top: 96px; }
-  }
 
   .foot { margin-top: var(--space-16); }
   .tags { display: flex; flex-wrap: wrap; gap: var(--space-2); list-style: none; margin: 0; padding: 0; }

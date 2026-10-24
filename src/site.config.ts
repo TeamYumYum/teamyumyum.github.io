@@ -21,8 +21,8 @@ export const SITE = {
 } as const;
 
 /**
- * layout: 'doc'  → 넓은 본문 + 목차 (기술·트러블슈팅)
- * layout: 'read' → 좁은 본문 + 목차 없음 (문화·소식)
+ * layout: 'doc'  → 넓은 본문 (기술·트러블슈팅)
+ * layout: 'read' → 좁은 본문 (문화·소식)
  */
 export const CATEGORIES = [
   { id: 'tech', name: '기술', layout: 'doc', description: '설계와 구현, 실험의 기록' },
