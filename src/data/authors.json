@@ -16,24 +16,28 @@
     "id": "kim-gyunho",
     "name": "김균호",
     "context": "Meal",
+    "github": "g0rnn",
     "tracks": ["백엔드 공통"]
   },
   {
     "id": "jung-sanghoon",
     "name": "정상훈",
     "context": "Workout",
+    "github": "1Irving1",
     "tracks": ["Android 공통"]
   },
   {
     "id": "shin-jaeeun",
     "name": "신재은",
     "context": "Coaching",
+    "github": "hapoom2",
     "tracks": ["인프라"]
   },
   {
     "id": "hong-baeknamjun",
     "name": "홍백남준",
-    "context": "Growth"
+    "context": "Growth",
+    "github": "horuraging"
   },
   {
     "id": "park-sihyun",
