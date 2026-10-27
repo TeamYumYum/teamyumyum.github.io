@@ -3,7 +3,7 @@ title: "DDD를 어떻게 적용해야 할까? 꾸기를 설계하며 고민한 �
 description: "꾸기에 DDD를 적용하며 도메인 경계와 책임을 고민한 기록이에요. 식단 수정과 스트릭의 관계에서 발견한 규칙, 목표 달성 판정을 Coaching에 둔 이유를 코드와 함께 소개해요."
 pubDate: 2026-10-27
 category: tech
-authors: [park-sihyun]
+authors: [kim-gyunho]
 tags: [DDD, 도메인 설계, Bounded Context, Spring]
 cover: ./cover.png
 coverAlt: "꾸기의 도메인 경계와 책임 설계를 소개하는 표지"
