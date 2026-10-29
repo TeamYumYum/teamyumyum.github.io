@@ -5,7 +5,6 @@ pubDate: 2026-10-29
 category: tech
 authors: [seol-munhyeok]
 tags: [도메인 설계, 회원 탈퇴, 개인정보, 동시성, Spring, JPA]
-draft: true
 cover: ./cover.png
 coverAlt: "고른 길과 버린 길, 이번 주 꾸기의 기술적 선택 네 가지를 소개하는 표지"
 ---
