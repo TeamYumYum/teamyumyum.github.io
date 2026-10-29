@@ -6,7 +6,6 @@ category: tech
 authors: [seol-munhyeok]
 tags: [회원 탈퇴, 개인정보, 동시성, JPA, Spring]
 cover: ./cover.png
-draft: true
 coverAlt: "회원 탈퇴를 만들며 알게 된 삭제의 세 가지 의미를 소개하는 표지"
 ---
 
