@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="470" viewBox="0 0 1120 470" role="img" aria-labelledby="title desc">
+  <title id="title">같은 잠금 아래에서 가능한 두 순서</title>
+  <desc id="desc">쓰기가 먼저 잠금을 잡으면 아직 활동 회원이라 기록하고 커밋하며, 삭제는 기다렸다가 방금 쓴 행까지 지운다. 삭제가 먼저 잠금을 잡으면 모두 지우고 커밋하며, 쓰기는 기다렸다가 잠금을 얻은 뒤 탈퇴한 것을 보고 아무것도 쓰지 않는다.</desc>
+  <rect width="1120" height="470" rx="24" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Malgun Gothic', sans-serif">
+    <text x="48" y="57" font-size="27" font-weight="700" fill="#17212e">누가 먼저 잠금을 잡아도 탈퇴 회원의 행은 남지 않아요</text>
+    <text x="48" y="89" font-size="16" fill="#526174">쓰기와 삭제가 회원별 잠금 행 하나를 SELECT … FOR UPDATE로 잡아요</text>
+
+    <text x="48" y="138" font-size="17" font-weight="700" fill="#17212e">① 쓰기가 먼저 잡으면</text>
+    <text x="48" y="182" font-size="15" font-weight="700" fill="#526174">쓰기</text>
+    <text x="48" y="232" font-size="15" font-weight="700" fill="#526174">삭제</text>
+    <rect x="130" y="158" width="942" height="38" rx="9" fill="#ffffff" stroke="#e2e8f0"/>
+    <rect x="130" y="208" width="942" height="38" rx="9" fill="#ffffff" stroke="#e2e8f0"/>
+    <rect x="138" y="164" width="420" height="26" rx="7" fill="#eff6ff" stroke="#1b64da"/>
+    <text x="150" y="182" font-size="14" font-weight="700" fill="#1b64da">잠금 → 아직 활동 회원 → 기록 → 커밋</text>
+    <rect x="320" y="214" width="236" height="26" rx="7" fill="#f1f5f9" stroke="#8a96a6" stroke-dasharray="4 4"/>
+    <text x="332" y="232" font-size="14" fill="#8a96a6">잠금 기다리는 중</text>
+    <rect x="566" y="214" width="498" height="26" rx="7" fill="#edfaf6" stroke="#067a5f"/>
+    <text x="578" y="232" font-size="14" font-weight="700" fill="#067a5f">잠금 → 방금 쓴 행까지 모두 지워요</text>
+
+    <text x="48" y="300" font-size="17" font-weight="700" fill="#17212e">② 삭제가 먼저 잡으면</text>
+    <text x="48" y="344" font-size="15" font-weight="700" fill="#526174">삭제</text>
+    <text x="48" y="394" font-size="15" font-weight="700" fill="#526174">쓰기</text>
+    <rect x="130" y="320" width="942" height="38" rx="9" fill="#ffffff" stroke="#e2e8f0"/>
+    <rect x="130" y="370" width="942" height="38" rx="9" fill="#ffffff" stroke="#e2e8f0"/>
+    <rect x="138" y="326" width="380" height="26" rx="7" fill="#edfaf6" stroke="#067a5f"/>
+    <text x="150" y="344" font-size="14" font-weight="700" fill="#067a5f">잠금 → 모두 지움 → 커밋</text>
+    <rect x="280" y="376" width="236" height="26" rx="7" fill="#f1f5f9" stroke="#8a96a6" stroke-dasharray="4 4"/>
+    <text x="292" y="394" font-size="14" fill="#8a96a6">잠금 기다리는 중</text>
+    <rect x="526" y="376" width="538" height="26" rx="7" fill="#eff6ff" stroke="#1b64da"/>
+    <text x="538" y="394" font-size="14" font-weight="700" fill="#1b64da">잠금 → 탈퇴했네요 → 아무것도 쓰지 않아요</text>
+
+    <text x="48" y="446" font-size="14" fill="#526174">삭제는 탈퇴가 커밋된 뒤에만 돌아요. 그래서 삭제 다음에 잠금을 얻은 쓰기는 반드시 "탈퇴했다"를 봐요.</text>
+  </g>
+</svg>

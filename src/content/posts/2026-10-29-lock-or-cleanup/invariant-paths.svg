@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="440" viewBox="0 0 1120 440" role="img" aria-labelledby="title desc">
+  <title id="title">불변식과 그것이 깨지는 두 경로</title>
+  <desc id="desc">탈퇴한 회원을 알아볼 수 있는 행이 없어야 한다는 불변식은 두 경로로 깨진다. 첫째는 갱신 손실로, 일괄 UPDATE가 버전을 올리지 않아 옛 회원 ID가 다시 써지는 것이다. 버전을 직접 올려 막는다. 둘째는 늦은 쓰기로, 탈퇴 직전에 시작한 요청이 삭제 뒤에 커밋되는 것이다. 잠금이나 나중에 정리하는 방법으로 다룬다. 둘 다 탈퇴 커밋과 실제 삭제 사이의 시간 차에서 생긴다.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#e14d00"/></marker>
+  </defs>
+  <rect width="1120" height="440" rx="24" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Malgun Gothic', sans-serif">
+    <text x="48" y="57" font-size="27" font-weight="700" fill="#17212e">지켜야 할 문장 하나, 깨지는 길 두 개</text>
+    <text x="48" y="89" font-size="16" fill="#526174">둘 다 "탈퇴 커밋"과 "실제 삭제" 사이의 시간 차에서 생겨요</text>
+
+    <rect x="260" y="116" width="600" height="68" rx="14" fill="#eff6ff" stroke="#1b64da" stroke-width="2"/>
+    <text x="560" y="144" font-size="14" font-weight="700" fill="#1b64da" text-anchor="middle">불변식</text>
+    <text x="560" y="170" font-size="19" font-weight="700" fill="#17212e" text-anchor="middle">탈퇴한 회원을 알아볼 수 있는 행은 없어요</text>
+
+    <path d="M300 236C300 210 360 196 400 188" fill="none" stroke="#e14d00" stroke-width="2" marker-end="url(#a)"/>
+    <path d="M820 236C820 210 760 196 720 188" fill="none" stroke="#e14d00" stroke-width="2" marker-end="url(#a)"/>
+    <text x="230" y="214" font-size="13" font-weight="700" fill="#e14d00">깨뜨려요</text>
+    <text x="890" y="214" font-size="13" font-weight="700" fill="#e14d00" text-anchor="end">깨뜨려요</text>
+
+    <rect x="48" y="240" width="500" height="168" rx="14" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="72" y="274" font-size="14" font-weight="700" fill="#e14d00">① 갱신 손실</text>
+    <text x="72" y="302" font-size="19" font-weight="700" fill="#17212e">끊은 연결이 되살아나요</text>
+    <text x="72" y="332" font-size="15" fill="#526174">일괄 UPDATE가 @Version을 올리지 않아서,</text>
+    <text x="72" y="354" font-size="15" fill="#526174">먼저 읽어 둔 수정 요청이 옛 회원 ID를 다시 써요</text>
+    <text x="72" y="388" font-size="15" font-weight="700" fill="#067a5f">→ 일괄 UPDATE에서 버전을 직접 올려요</text>
+
+    <rect x="572" y="240" width="500" height="168" rx="14" fill="#ffffff" stroke="#e14d00" stroke-width="2"/>
+    <text x="596" y="274" font-size="14" font-weight="700" fill="#e14d00">② 늦은 쓰기 · 이 글의 본론</text>
+    <text x="596" y="302" font-size="19" font-weight="700" fill="#17212e">지운 뒤에 새 행이 생겨요</text>
+    <text x="596" y="332" font-size="15" fill="#526174">탈퇴 직전에 시작한 요청이</text>
+    <text x="596" y="354" font-size="15" fill="#526174">삭제가 끝난 뒤에 커밋돼요</text>
+    <text x="596" y="388" font-size="15" font-weight="700" fill="#067a5f">→ 잠금(A) 또는 나중에 정리(B)</text>
+  </g>
+</svg>

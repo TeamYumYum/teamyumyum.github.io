@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="420" viewBox="0 0 1120 420" role="img" aria-labelledby="title desc">
+  <title id="title">B가 잠금 없이 수렴하는 이유</title>
+  <desc id="desc">탈퇴가 커밋되면 토큰이 막혀 새 쓰기는 시작할 수 없다. 탈퇴 전에 시작한 요청 몇 개만 남는데, 이 요청들은 몇 분 안에 끝나고 그중 일부가 늦은 행을 남긴다. 그 뒤에는 새 행이 생기지 않으므로 다음 04시 정리가 멱등한 삭제를 한 번 더 돌리면 남은 행이 없어진다.</desc>
+  <defs>
+    <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0V8" stroke="#e2e8f0" stroke-width="4"/></pattern>
+  </defs>
+  <rect width="1120" height="420" rx="24" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Malgun Gothic', sans-serif">
+    <text x="48" y="57" font-size="27" font-weight="700" fill="#17212e">새 쓰기가 끊기면, 한 번 더 지우는 것으로 끝나요</text>
+    <text x="48" y="89" font-size="16" fill="#526174">주황 점은 삭제가 끝난 뒤에 커밋된 늦은 쓰기예요</text>
+
+    <rect x="360" y="128" width="712" height="190" fill="url(#hatch)"/>
+    <text x="760" y="300" font-size="14" font-weight="700" fill="#8a96a6" text-anchor="middle">새 쓰기 없음 (토큰 차단)</text>
+
+    <rect x="140" y="146" width="290" height="24" rx="7" fill="#eff6ff" stroke="#1b64da"/>
+    <rect x="200" y="186" width="210" height="24" rx="7" fill="#eff6ff" stroke="#1b64da"/>
+    <rect x="250" y="226" width="300" height="24" rx="7" fill="#eff6ff" stroke="#1b64da"/>
+    <circle cx="550" cy="238" r="8" fill="#e14d00"/>
+    <circle cx="430" cy="158" r="8" fill="#e14d00"/>
+    <text x="64" y="204" font-size="14" font-weight="700" fill="#526174">진행 중</text>
+    <text x="64" y="222" font-size="14" font-weight="700" fill="#526174">요청</text>
+
+    <path d="M360 120V330" stroke="#17212e" stroke-width="2"/>
+    <text x="360" y="352" font-size="14" font-weight="700" fill="#17212e" text-anchor="middle">① 탈퇴 커밋</text>
+    <text x="360" y="372" font-size="13" fill="#526174" text-anchor="middle">토큰 차단</text>
+
+    <path d="M362 112H560" stroke="#e14d00" stroke-width="2"/>
+    <path d="M362 106V118M560 106V118" stroke="#e14d00" stroke-width="2"/>
+    <text x="461" y="102" font-size="13" font-weight="700" fill="#e14d00" text-anchor="middle">② 남은 요청은 몇 분 안에 끝나요</text>
+
+    <path d="M940 120V330" stroke="#067a5f" stroke-width="2" stroke-dasharray="6 5"/>
+    <circle cx="940" cy="238" r="9" fill="#067a5f"/>
+    <text x="940" y="352" font-size="14" font-weight="700" fill="#067a5f" text-anchor="middle">③ 다음 04:00 정리</text>
+    <text x="940" y="372" font-size="13" fill="#526174" text-anchor="middle">멱등한 삭제 한 번 더 → 남은 행 0</text>
+
+    <path d="M120 396H1072" stroke="#8a96a6" stroke-width="1.5"/>
+    <text x="1072" y="412" font-size="13" fill="#8a96a6" text-anchor="end">시간 →</text>
+  </g>
+</svg>
