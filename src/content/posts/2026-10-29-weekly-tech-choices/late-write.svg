@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="460" viewBox="0 0 1120 460" role="img" aria-labelledby="title desc">
+  <title id="title">늦은 쓰기가 생기는 순서</title>
+  <desc id="desc">다른 기기의 사진 저장 요청이 탈퇴 전에 회원 확인을 통과한다. 그 요청이 사진 인식 서버를 기다리는 동안 탈퇴가 커밋되고, 탈퇴 처리가 회원 데이터를 지운다. 그 뒤에 저장 요청이 커밋되면서 탈퇴한 회원 ID가 붙은 행이 남는다.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#8a96a6"/></marker>
+  </defs>
+  <rect width="1120" height="460" rx="24" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Malgun Gothic', sans-serif">
+    <text x="48" y="57" font-size="27" font-weight="700" fill="#17212e">지운 뒤에 커밋되는 요청이 있으면 행이 다시 생겨요</text>
+    <text x="48" y="89" font-size="16" fill="#526174">사진 인식은 서버 호출에 몇 초가 걸려서 이 틈이 가장 길어요</text>
+
+    <!-- lanes -->
+    <text x="48" y="166" font-size="15" font-weight="700" fill="#17212e">다른 기기의</text>
+    <text x="48" y="186" font-size="15" font-weight="700" fill="#17212e">사진 저장 요청</text>
+    <text x="48" y="256" font-size="15" font-weight="700" fill="#17212e">탈퇴 요청</text>
+    <text x="48" y="336" font-size="15" font-weight="700" fill="#17212e">탈퇴 처리</text>
+    <text x="48" y="356" font-size="13" fill="#8a96a6">(이벤트 핸들러)</text>
+    <path d="M200 176H1072M200 250H1072M200 340H1072" stroke="#e2e8f0"/>
+
+    <!-- request bar -->
+    <rect x="240" y="160" width="660" height="32" rx="8" fill="#eff6ff" stroke="#1b64da"/>
+    <text x="256" y="182" font-size="14" fill="#1b64da">회원 확인 통과 → 사진 인식 서버 기다리는 중 …</text>
+    <circle cx="240" cy="176" r="7" fill="#1b64da"/>
+    <circle cx="900" cy="176" r="9" fill="#e14d00"/>
+
+    <!-- withdrawal commit -->
+    <rect x="380" y="234" width="120" height="32" rx="8" fill="#f1f5f9" stroke="#8a96a6"/>
+    <text x="440" y="256" font-size="14" font-weight="700" fill="#17212e" text-anchor="middle">탈퇴 커밋</text>
+    <path d="M500 258C540 258 540 330 572 334" fill="none" stroke="#8a96a6" stroke-width="2" marker-end="url(#arrow)"/>
+
+    <!-- handler delete -->
+    <rect x="580" y="324" width="200" height="32" rx="8" fill="#fff2ec" stroke="#e14d00"/>
+    <text x="680" y="346" font-size="14" font-weight="700" fill="#e14d00" text-anchor="middle">회원 데이터 삭제</text>
+
+    <!-- vertical markers -->
+    <path d="M240 130V400" stroke="#1b64da" stroke-dasharray="3 5"/>
+    <path d="M900 130V400" stroke="#e14d00" stroke-dasharray="3 5"/>
+    <text x="240" y="424" font-size="13" fill="#1b64da" text-anchor="middle">① 회원 확인 통과</text>
+    <text x="440" y="424" font-size="13" fill="#526174" text-anchor="middle">② 탈퇴 커밋</text>
+    <text x="680" y="424" font-size="13" fill="#526174" text-anchor="middle">③ 삭제 완료</text>
+    <text x="900" y="424" font-size="13" font-weight="700" fill="#e14d00" text-anchor="middle">④ 저장 커밋 → 행이 남아요</text>
+    <text x="1072" y="446" font-size="13" fill="#8a96a6" text-anchor="end">시간 →</text>
+  </g>
+</svg>

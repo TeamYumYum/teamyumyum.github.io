@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="540" viewBox="0 0 1120 540" role="img" aria-labelledby="title desc">
+  <title id="title">몸무게를 가진 곳의 변화</title>
+  <desc id="desc">이전에는 Member 프로필 몸무게와 Coaching 체중 기록 두 곳에 몸무게가 있어서 코칭 계획 계산과 마이 화면이 어느 값을 읽어야 할지 분명하지 않았다. 지금은 Member가 시작 체중만 갖고, 온보딩 이벤트로 Coaching 체중 기록에 첫 기록을 남긴다. 현재 몸무게는 가장 최근 체중 기록이며 기록이 없을 때만 시작 체중을 쓴다.</desc>
+  <defs>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#067a5f"/></marker>
+    <marker id="arrow-grey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#8a96a6"/></marker>
+    <marker id="arrow-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#e14d00"/></marker>
+  </defs>
+  <rect width="1120" height="540" rx="24" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Malgun Gothic', sans-serif">
+    <text x="48" y="57" font-size="27" font-weight="700" fill="#17212e">몸무게가 두 곳에 있던 구조를 기록 하나로 모았어요</text>
+    <text x="48" y="89" font-size="16" fill="#526174">왼쪽은 바꾸기 전, 오른쪽은 지금 구조예요</text>
+
+    <!-- 이전 -->
+    <text x="48" y="140" font-size="18" font-weight="700" fill="#8a96a6">이전</text>
+    <rect x="48" y="156" width="496" height="350" rx="16" fill="#ffffff" stroke="#e2e8f0"/>
+    <rect x="72" y="196" width="180" height="120" rx="12" fill="#eff6ff" stroke="#1b64da"/>
+    <text x="92" y="224" font-size="14" font-weight="700" fill="#1b64da">Member</text>
+    <text x="92" y="254" font-size="18" font-weight="700" fill="#17212e">프로필 몸무게</text>
+    <text x="92" y="280" font-size="14" fill="#526174">온보딩·프로필 수정이</text>
+    <text x="92" y="300" font-size="14" fill="#526174">값을 덮어써요</text>
+    <rect x="352" y="196" width="180" height="120" rx="12" fill="#edfaf6" stroke="#067a5f"/>
+    <text x="372" y="224" font-size="14" font-weight="700" fill="#067a5f">Coaching</text>
+    <text x="372" y="254" font-size="18" font-weight="700" fill="#17212e">체중 기록</text>
+    <text x="372" y="280" font-size="14" fill="#526174">날짜별로</text>
+    <text x="372" y="300" font-size="14" fill="#526174">쌓여요</text>
+    <path d="M162 318V396" stroke="#e14d00" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arrow-orange)"/>
+    <path d="M442 318V396" stroke="#e14d00" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arrow-orange)"/>
+    <rect x="112" y="400" width="380" height="56" rx="12" fill="#f1f5f9"/>
+    <text x="302" y="434" font-size="16" font-weight="700" fill="#17212e" text-anchor="middle">코칭 계획 계산 · 마이 화면</text>
+    <text x="296" y="488" font-size="17" font-weight="700" fill="#e14d00" text-anchor="middle">현재 몸무게는 어느 쪽 값일까요?</text>
+
+    <!-- 지금 -->
+    <text x="576" y="140" font-size="18" font-weight="700" fill="#067a5f">지금</text>
+    <rect x="576" y="156" width="496" height="350" rx="16" fill="#ffffff" stroke="#e2e8f0"/>
+    <rect x="600" y="196" width="180" height="120" rx="12" fill="#eff6ff" stroke="#1b64da"/>
+    <text x="620" y="224" font-size="14" font-weight="700" fill="#1b64da">Member</text>
+    <text x="620" y="254" font-size="18" font-weight="700" fill="#17212e">시작 체중</text>
+    <text x="620" y="280" font-size="14" fill="#526174">온보딩 때 한 번 받고</text>
+    <text x="620" y="300" font-size="14" fill="#526174">바꾸지 않아요</text>
+    <path d="M782 256H876" stroke="#067a5f" stroke-width="2.5" marker-end="url(#arrow-green)"/>
+    <text x="830" y="244" font-size="13" font-weight="700" fill="#067a5f" text-anchor="middle">온보딩</text>
+    <text x="830" y="278" font-size="13" font-weight="700" fill="#067a5f" text-anchor="middle">이벤트</text>
+    <rect x="880" y="196" width="180" height="120" rx="12" fill="#edfaf6" stroke="#067a5f"/>
+    <text x="900" y="224" font-size="14" font-weight="700" fill="#067a5f">Coaching</text>
+    <text x="900" y="254" font-size="18" font-weight="700" fill="#17212e">체중 기록</text>
+    <text x="900" y="280" font-size="14" fill="#526174">첫 기록의 출처는</text>
+    <text x="900" y="300" font-size="14" font-family="ui-monospace, Consolas, monospace" fill="#17212e">ONBOARDING</text>
+    <path d="M690 318V396" stroke="#8a96a6" stroke-width="2" stroke-dasharray="6 5" marker-end="url(#arrow-grey)"/>
+    <text x="702" y="362" font-size="13" fill="#8a96a6">기록이 없을 때만</text>
+    <path d="M970 318V396" stroke="#067a5f" stroke-width="2.5" marker-end="url(#arrow-green)"/>
+    <rect x="660" y="400" width="340" height="56" rx="12" fill="#edfaf6"/>
+    <text x="830" y="434" font-size="16" font-weight="700" fill="#17212e" text-anchor="middle">현재 몸무게 = 가장 최근 체중 기록</text>
+    <text x="824" y="488" font-size="17" font-weight="700" fill="#067a5f" text-anchor="middle">읽는 곳이 하나라 헷갈릴 일이 없어요</text>
+  </g>
+</svg>
