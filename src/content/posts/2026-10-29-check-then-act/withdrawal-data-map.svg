@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="600" viewBox="0 0 1120 600" role="img" aria-labelledby="title desc">
+  <title id="title">탈퇴할 때 도메인별 데이터 처리</title>
+  <desc id="desc">Member는 프로필과 소셜 계정 연결을 지우고 개인정보 없는 회원 행만 남긴다. Meal은 사진 없는 식사를 지우고 사진 식사, 사진 인식, 회원이 고친 값은 회원 연결만 끊어 남긴다. Workout은 운동 기록, 루틴, 일정을 지운다. Coaching은 계획, 하루 목표, 체중 기록, 주간 목표와 판정을 지운다. Growth는 성장 기록과 판정 기록을 지운다. Admin 검수 결과는 사진 인식만 가리키므로 남는다. 폰은 기기에 남은 회원 데이터를 지운다.</desc>
+  <rect width="1120" height="600" rx="24" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Malgun Gothic', sans-serif">
+    <text x="48" y="57" font-size="27" font-weight="700" fill="#17212e">탈퇴하면 대부분 지우고, 사진 쌍만 연결을 끊어 남겨요</text>
+    <text x="48" y="89" font-size="16" fill="#526174">각 도메인이 탈퇴 이벤트를 받아 자기 데이터를 처리해요</text>
+
+    <text x="200" y="140" font-size="16" font-weight="700" fill="#e14d00">지워요</text>
+    <text x="680" y="140" font-size="16" font-weight="700" fill="#067a5f">회원 연결만 끊고 남겨요</text>
+    <path d="M48 154H1072" stroke="#e2e8f0"/>
+
+    <!-- rows: y = 162 + i*58 -->
+    <g>
+      <text x="48" y="196" font-size="17" font-weight="700" fill="#17212e">Member</text>
+      <rect x="200" y="170" width="440" height="40" rx="10" fill="#fff2ec"/>
+      <text x="216" y="196" font-size="15" fill="#17212e">닉네임 · 프로필 · 소셜 계정 연결</text>
+      <rect x="680" y="170" width="392" height="40" rx="10" fill="#f1f5f9"/>
+      <text x="696" y="196" font-size="15" fill="#526174">회원 행(ID·상태·탈퇴 시각, 개인정보 없음)</text>
+    </g>
+    <path d="M48 220H1072" stroke="#eef2f6"/>
+    <g>
+      <text x="48" y="254" font-size="17" font-weight="700" fill="#17212e">Meal</text>
+      <rect x="200" y="228" width="440" height="40" rx="10" fill="#fff2ec"/>
+      <text x="216" y="254" font-size="15" fill="#17212e">검색·직접 입력으로 남긴 식사와 항목</text>
+      <rect x="680" y="228" width="392" height="40" rx="10" fill="#edfaf6" stroke="#067a5f"/>
+      <text x="696" y="254" font-size="15" font-weight="700" fill="#067a5f">사진 식사 · 사진 인식 · 회원이 고친 값</text>
+    </g>
+    <path d="M48 278H1072" stroke="#eef2f6"/>
+    <g>
+      <text x="48" y="312" font-size="17" font-weight="700" fill="#17212e">Workout</text>
+      <rect x="200" y="286" width="440" height="40" rx="10" fill="#fff2ec"/>
+      <text x="216" y="312" font-size="15" fill="#17212e">운동 기록 · 루틴 · 일정</text>
+    </g>
+    <path d="M48 336H1072" stroke="#eef2f6"/>
+    <g>
+      <text x="48" y="370" font-size="17" font-weight="700" fill="#17212e">Coaching</text>
+      <rect x="200" y="344" width="440" height="40" rx="10" fill="#fff2ec"/>
+      <text x="216" y="370" font-size="15" fill="#17212e">계획 · 하루 목표 · 체중 기록 · 주간 목표와 판정</text>
+    </g>
+    <path d="M48 394H1072" stroke="#eef2f6"/>
+    <g>
+      <text x="48" y="428" font-size="17" font-weight="700" fill="#17212e">Growth</text>
+      <rect x="200" y="402" width="440" height="40" rx="10" fill="#fff2ec"/>
+      <text x="216" y="428" font-size="15" fill="#17212e">성장 기록 · 하루·주간 판정 기록</text>
+    </g>
+    <path d="M48 452H1072" stroke="#eef2f6"/>
+    <g>
+      <text x="48" y="486" font-size="17" font-weight="700" fill="#17212e">Admin</text>
+      <rect x="680" y="460" width="392" height="40" rx="10" fill="#f1f5f9"/>
+      <text x="696" y="486" font-size="15" fill="#526174">검수 결과(사진 인식만 가리켜요)</text>
+    </g>
+    <path d="M48 510H1072" stroke="#eef2f6"/>
+    <g>
+      <text x="48" y="544" font-size="17" font-weight="700" fill="#17212e">폰</text>
+      <rect x="200" y="518" width="440" height="40" rx="10" fill="#fff2ec"/>
+      <text x="216" y="544" font-size="15" fill="#17212e">보내지 않은 운동 기록 · 루틴 사본 · 촬영 임시 파일</text>
+    </g>
+  </g>
+</svg>
