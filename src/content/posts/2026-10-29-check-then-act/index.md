@@ -2,7 +2,7 @@
 title: "지웠는데 다시 생겼어요: 회원 탈퇴 과정에서 발생한 check-then-act(TOCTOU) 문제 해결하기"
 description: "회원이 탈퇴하기 직전에 시작한 요청이 삭제가 끝난 뒤 새 행을 저장할 수 있었어요. 한 번 더 확인해도 해결되지 않는 check-then-act 문제였죠. Growth에는 잠금을, Meal·Workout·Coaching에는 반복 가능한 정리 배치를 적용한 이유를 이야기해요."
 pubDate: 2026-10-29
-category: tech
+category: troubleshooting
 authors: [seol-munhyeok]
 tags: [동시성, TOCTOU, 회원 탈퇴, JPA, Spring]
 cover: ./cover.png
