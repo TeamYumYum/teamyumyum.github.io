@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="440" viewBox="0 0 1120 440" role="img" aria-labelledby="title desc">
+  <title id="title">Meal과 Growth의 쓰기 차이</title>
+  <desc id="desc">Meal에서는 식사 저장 두 건이 각자 자기 행을 추가하므로 서로 기다릴 필요가 없다. 하루 합계는 저장하지 않고 읽을 때 더한다. Growth에서는 하루 판정과 주간 판정이 같은 스트릭 행을 함께 고치므로, 회원별 잠금 행 하나 뒤에 줄을 서서 차례로 쓴다.</desc>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#8a96a6"/></marker>
+  </defs>
+  <rect width="1120" height="440" rx="24" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Malgun Gothic', sans-serif">
+    <text x="48" y="57" font-size="27" font-weight="700" fill="#17212e">자기 행만 쓰면 줄 설 필요가 없어요</text>
+    <text x="48" y="89" font-size="16" fill="#526174">여러 쓰기가 같은 값 하나를 고칠 때만 줄을 세워요</text>
+
+    <!-- Meal -->
+    <rect x="48" y="116" width="500" height="292" rx="16" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="72" y="152" font-size="18" font-weight="700" fill="#17212e">Meal: 각자 자기 행을 추가해요</text>
+    <rect x="72" y="180" width="150" height="40" rx="10" fill="#eff6ff" stroke="#1b64da"/>
+    <text x="147" y="205" font-size="15" font-weight="700" fill="#1b64da" text-anchor="middle">식사 저장 ①</text>
+    <rect x="72" y="250" width="150" height="40" rx="10" fill="#eff6ff" stroke="#1b64da"/>
+    <text x="147" y="275" font-size="15" font-weight="700" fill="#1b64da" text-anchor="middle">식사 저장 ②</text>
+    <path d="M226 200H318" stroke="#8a96a6" stroke-width="2" marker-end="url(#a)"/>
+    <path d="M226 270H318" stroke="#8a96a6" stroke-width="2" marker-end="url(#a)"/>
+    <rect x="322" y="180" width="200" height="40" rx="10" fill="#f8fafc" stroke="#e2e8f0"/>
+    <text x="422" y="205" font-size="15" fill="#17212e" text-anchor="middle">식사 행 A</text>
+    <rect x="322" y="250" width="200" height="40" rx="10" fill="#f8fafc" stroke="#e2e8f0"/>
+    <text x="422" y="275" font-size="15" fill="#17212e" text-anchor="middle">식사 행 B</text>
+    <text x="72" y="336" font-size="15" fill="#526174">하루 합계는 저장하지 않고, 읽을 때 더해요</text>
+    <text x="72" y="370" font-size="16" font-weight="700" fill="#067a5f">→ 서로 기다릴 필요가 없어요</text>
+
+    <!-- Growth -->
+    <rect x="572" y="116" width="500" height="292" rx="16" fill="#ffffff" stroke="#e2e8f0"/>
+    <text x="596" y="152" font-size="18" font-weight="700" fill="#17212e">Growth: 같은 값 하나를 함께 고쳐요</text>
+    <rect x="596" y="180" width="150" height="40" rx="10" fill="#eff6ff" stroke="#1b64da"/>
+    <text x="671" y="205" font-size="15" font-weight="700" fill="#1b64da" text-anchor="middle">하루 판정</text>
+    <rect x="596" y="250" width="150" height="40" rx="10" fill="#eff6ff" stroke="#1b64da"/>
+    <text x="671" y="275" font-size="15" font-weight="700" fill="#1b64da" text-anchor="middle">주간 판정</text>
+    <rect x="786" y="214" width="96" height="42" rx="10" fill="#fff2ec" stroke="#e14d00" stroke-width="2"/>
+    <text x="834" y="232" font-size="12" font-weight="700" fill="#e14d00" text-anchor="middle">회원별</text>
+    <text x="834" y="248" font-size="12" font-weight="700" fill="#e14d00" text-anchor="middle">잠금 행</text>
+    <path d="M750 200C770 200 770 226 782 230" fill="none" stroke="#8a96a6" stroke-width="2" marker-end="url(#a)"/>
+    <path d="M750 270C770 270 770 244 782 240" fill="none" stroke="#8a96a6" stroke-width="2" marker-end="url(#a)"/>
+    <path d="M886 235H926" stroke="#8a96a6" stroke-width="2" marker-end="url(#a)"/>
+    <rect x="930" y="214" width="122" height="42" rx="10" fill="#f8fafc" stroke="#e2e8f0"/>
+    <text x="991" y="240" font-size="15" fill="#17212e" text-anchor="middle">스트릭 행</text>
+    <text x="596" y="336" font-size="15" fill="#526174">동시에 고치면 한쪽 결과가 사라져요(갱신 손실)</text>
+    <text x="596" y="370" font-size="16" font-weight="700" fill="#e14d00">→ 잠금 행 하나 뒤에 줄을 서요</text>
+  </g>
+</svg>

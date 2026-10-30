@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="400" viewBox="0 0 1120 400" role="img" aria-labelledby="title desc">
+  <title id="title">막기와 복구의 두 층</title>
+  <desc id="desc">막는 층에는 Growth만 회원별 잠금을 두어 늦은 쓰기를 막는다. Meal, Workout, Coaching은 늦은 쓰기를 허용한다. 복구하는 층에는 네 도메인 모두 정리 배치를 둔다. Growth의 정리 배치는 삭제 실패를 복구하고, 나머지 세 도메인의 정리 배치는 늦은 쓰기와 삭제 실패를 함께 복구한다.</desc>
+  <rect width="1120" height="400" rx="24" fill="#f8fafc"/>
+  <g font-family="Pretendard, 'Malgun Gothic', sans-serif">
+    <text x="48" y="57" font-size="27" font-weight="700" fill="#17212e">A는 막고, B는 복구해요</text>
+    <text x="48" y="89" font-size="16" fill="#526174">두 방법은 경쟁이 아니라 층이 달라요. 복구 층은 네 도메인 모두에 있어요</text>
+
+    <text x="400" y="140" font-size="16" font-weight="700" fill="#17212e" text-anchor="middle">Growth</text>
+    <text x="856" y="140" font-size="16" font-weight="700" fill="#17212e" text-anchor="middle">Meal · Workout · Coaching</text>
+
+    <text x="48" y="200" font-size="17" font-weight="700" fill="#1b64da">막기</text>
+    <text x="48" y="222" font-size="13" fill="#526174">A · 잠금</text>
+    <rect x="180" y="162" width="440" height="92" rx="14" fill="#eff6ff" stroke="#1b64da" stroke-width="2"/>
+    <text x="204" y="198" font-size="17" font-weight="700" fill="#1b64da">회원별 잠금 안에서 탈퇴 확인</text>
+    <text x="204" y="226" font-size="14" fill="#526174">늦은 쓰기가 아예 생기지 않아요</text>
+    <rect x="640" y="162" width="432" height="92" rx="14" fill="#ffffff" stroke="#8a96a6" stroke-dasharray="6 5"/>
+    <text x="664" y="198" font-size="17" font-weight="700" fill="#8a96a6">없음</text>
+    <text x="664" y="226" font-size="14" fill="#526174">늦은 쓰기를 허용해요</text>
+
+    <text x="48" y="318" font-size="17" font-weight="700" fill="#067a5f">복구</text>
+    <text x="48" y="340" font-size="13" fill="#526174">B · 정리 배치</text>
+    <rect x="180" y="280" width="440" height="92" rx="14" fill="#edfaf6" stroke="#067a5f" stroke-width="2"/>
+    <text x="204" y="316" font-size="17" font-weight="700" fill="#067a5f">매일 04:00 정리 배치</text>
+    <text x="204" y="344" font-size="14" fill="#526174">삭제 자체가 실패한 경우를 복구해요</text>
+    <rect x="640" y="280" width="432" height="92" rx="14" fill="#edfaf6" stroke="#067a5f" stroke-width="2"/>
+    <text x="664" y="316" font-size="17" font-weight="700" fill="#067a5f">매일 04:00 정리 배치</text>
+    <text x="664" y="344" font-size="14" fill="#526174">늦은 쓰기와 삭제 실패를 함께 복구해요</text>
+  </g>
+</svg>
