@@ -44,6 +44,17 @@ npm run preview  # 빌드 결과 확인. draft 글은 빠진다
 - 원본은 긴 변 2000px 정도로 줄여서 올린다. 폰 원본(5~10MB)을 그대로 올리면 저장소가 빠르게 커진다.
 - 얼굴이 나온 사진은 찍힌 사람에게 공개 동의를 받는다.
 
+### RAG 설계기 시리즈 표지
+
+이 시리즈는 연보라 배경과 궁금해하는 꾸기 포즈를 사용한다. 회차와 편별 제목을 바꿔 같은 구도로 생성한다.
+
+```bash
+node scripts/make-rag-series-cover.mjs src/content/posts/2026-11-10-rag-retrieval-model-selection --episode 1 --title '검색 모델은\n어떻게 골랐나'
+```
+
+결과는 해당 글 폴더의 `cover.png`다. 제목은 두 줄 이내로 작성한다. 원본은 꾸기 캐릭터의 `poses/f-q.png`이며,
+블로그용 사본은 `src/assets/kkugi/rag-question.png`에 있다. 생성 후 원본 크기와 카드 크기에서 잘림을 확인한다.
+
 ### 공개 전 확인
 
 블로그는 누구나 볼 수 있다. 글 PR에서 다음을 확인한다.
